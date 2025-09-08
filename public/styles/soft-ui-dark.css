@@ -1,0 +1,161 @@
+.dark .neumorph {
+            background: #16213e;
+            box-shadow: 20px 20px 60px #0a0a0f, -20px -20px 60px #2a2a4d;
+        }
+        .dark .neumorph-3d {
+            background: #16213e;
+            box-shadow: 15px 15px 30px #0a0a0f, -15px -15px 30px #2a2a4d, 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+.dark .neumorph-hover:hover {
+            box-shadow: 10px 10px 20px #0a0a0f, -10px -10px 20px #2a2a4d, 0 0 0 3px rgba(108, 92, 231, 0.3);
+        }
+        .dark .neumorph-btn {
+            background: #16213e;
+            box-shadow: 5px 5px 10px #0a0a0f, -5px -5px 10px #2a2a4d;
+            color: #f5f6fa;
+        }
+        .dark .neumorph-btn:active {
+            box-shadow: inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d;
+        }
+        .dark .skill-bar {
+            background: #16213e;
+            box-shadow: inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d;
+        }
+        .dark .input-field {
+            background: #16213e;
+            box-shadow: inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d;
+            color: #f5f6fa;
+        }
+
+        
+
+        .dark .input-field:focus {
+            box-shadow: inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d, 0 0 0 2px rgba(108, 92, 231, 0.3);
+        }
+
+        .dark-mode-toggle {
+            position: relative;
+            width: 50px;
+            height: 24px;
+        }
+
+        .dark-mode-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .dark-mode-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f0f0f0;
+            box-shadow: inset 3px 3px 5px #d9d9d9, inset -3px -3px 5px #ffffff;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .dark .dark-mode-slider {
+            background-color: #16213e;
+            box-shadow: inset 3px 3px 5px #0a0a0f, inset -3px -3px 5px #2a2a4d;
+        }
+
+        .dark-mode-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #6c5ce7;
+            transition: .4s;
+            border-radius: 50%;
+        }
+input:checked+.dark-mode-slider:before {
+            transform: translateX(26px);
+            background-color: #a29bfe;
+        }
+
+        .dark .text-gray-600 {
+            color: #a1a1aa;
+        }
+
+        .dark .bg-white.bg-opacity-50 {
+            background-color: rgba(26, 26, 46, 0.7);
+        }
+
+        .dark-mode .cursor {
+            background: #2d3436;
+            box-shadow:
+                8px 8px 15px #1e2223,
+                -8px -8px 15px #3c4649,
+                0 0 0 2px rgba(108, 92, 231, 0.2);
+        }
+
+        .dark-mode .cursor-follower {
+            background: #2d3436;
+            box-shadow:
+                5px 5px 10px #1e2223,
+                -5px -5px 10px #3c4649,
+                0 0 0 1px rgba(162, 155, 254, 0.2);
+        }
+
+        .dark-mode .cursor-active {
+            background: #2d3436;
+            box-shadow:
+                12px 12px 25px #1e2223,
+                -12px -12px 25px #3c4649,
+                0 0 0 3px rgba(108, 92, 231, 0.4);
+        }
+
+        .dark-mode .cursor-follower-active {
+            box-shadow:
+                3px 3px 6px #1e2223,
+                -3px -3px 6px #3c4649,
+                0 0 0 1px rgba(162, 155, 254, 0.3);
+        }
+        .dark-mode .neumorph-text {
+            color: #a29bfe;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.3),
+                -2px -2px 4px rgba(255, 255, 255, 0.1);
+        }
+        .dark-mode .scrolling-text {
+            background: #2d3436;
+            box-shadow:
+                8px 8px 16px #1e2223,
+                -8px -8px 16px #3c4649;
+            color: #a29bfe;
+        }
+
+        .dark-mode .scrolling-text:hover {
+            box-shadow:
+                12px 12px 24px #1e2223,
+                -12px -12px 24px #3c4649;
+            color: #6c5ce7;
+        }
+
+        .dark-mode .scrolling-text.checked {
+            color: #55efc4;
+        }
+
+        .dark-mode .scrolling-text.checked::after {
+            background: #55efc4;
+            box-shadow:
+                3px 3px 6px #1e2223,
+                -3px -3px 6px #3c4649;
+        }
+
+        /* Update the keyframes for dark mode */
+        @keyframes scroll-dark {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }

@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    /* cursor: none; */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease;
+}
+/* .mains{
+    background-image: '/assets/main.jpg';
+} */
+.cursor {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.2s ease, left 0.4s ease, top 0.4s ease;
+    box-shadow:
+        8px 8px 15px #d9d9d9,
+        -8px -8px 15px #ffffff,
+        0 0 0 2px rgba(108, 92, 231, 0.1);
+    mix-blend-mode: multiply;
+}
+.cursor-follower {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            position: fixed;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.7s ease;
+            box-shadow:
+                5px 5px 10px #d9d9d9,
+                -5px -5px 10px #ffffff,
+                0 0 0 1px rgba(162, 155, 254, 0.1);
+            will-change: transform;
+
+        }
+
+        .cursor-active {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: #f0f0f0;
+            box-shadow:
+                12px 12px 25px #d9d9d9,
+                -12px -12px 25px #ffffff,
+                0 0 0 3px rgba(108, 92, 231, 0.3);
+        }
+
+        .cursor-follower-active {
+            animation: none;
+            transform: translate(-50%, -50%) scale(0.5);
+            box-shadow:
+                3px 3px 6px #d9d9d9,
+                -3px -3px 6px #ffffff,
+                0 0 0 1px rgba(162, 155, 254, 0.2);
+        }
+        .cursor-follower-idle {
+            animation: revolve 4s linear infinite;
+            transform-origin: 30px 30px;
+            transform-box: fill-box;
+        }
+/* Cursor Particles Container */
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Individual Particles */
+        .cursor-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: rgba(162, 155, 254, 0.9);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 2px rgba(108, 92, 231, 0.5));
+            animation: particle-float 3s infinite ease-in-out;
+            will-change: transform;
+            opacity: 0;
+        }
+
+        /* Particle Positioning - Fixed your original positions */
+        .cursor-particle:nth-child(1) {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -10px);
+            animation-delay: 0s;
+        }
+
+        .cursor-particle:nth-child(2) {
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 10px);
+            animation-delay: 0.5s;
+        }
+
+        .cursor-particle:nth-child(3) {
+            top: 50%;
+            left: 0;
+            transform: translate(-10px, -50%);
+            animation-delay: 1s;
+        }
+
+        .cursor-particle:nth-child(4) {
+            top: 50%;
+            left: 100%;
+            transform: translate(10px, -50%);
+            animation-delay: 1.5s;
+        }
+
+        /* Enhanced Animation */
+        @keyframes particle-float {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-12px) scale(1.3);
+                opacity: 1;
+            }
+        }
+
+        /* Active State */
+        .cursor-active~.cursor-follower .cursor-particle {
+            background-color: rgba(192, 185, 254, 0.9);
+            animation: particle-active 2s infinite ease-in-out;
+        }
+
+        @keyframes particle-active {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.6);
+            }
+        }
+
+
+        @keyframes revolve {
+            0% {
+                transform: rotate(0deg) translateX(100px) rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg) translateX(100px) rotate(-360deg);
+            }
+        }

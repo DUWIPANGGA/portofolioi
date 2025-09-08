@@ -1,0 +1,202 @@
+.neumorph {
+            border-radius: 20px;
+            background: #f0f0f0;
+            box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .neumorph-3d {
+            border-radius: 20px;
+            background: #f0f0f0;
+            box-shadow: 15px 15px 30px #d9d9d9, -15px -15px 30px #ffffff, 0 0 0 3px rgba(108, 92, 231, 0.2);
+            transition: all 0.3s ease;
+        }
+        .neumorph-hover:hover {
+            box-shadow: 10px 10px 20px #d9d9d9, -10px -10px 20px #ffffff, 0 0 0 3px rgba(108, 92, 231, 0.3);
+            transform: translateY(-5px);
+        }
+        .neumorph-btn {
+            border-radius: 10px;
+            background: #f0f0f0;
+            box-shadow: 5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff;
+            transition: all 0.2s ease;
+        }
+        .neumorph-btn:active {
+            box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+        }
+        
+
+        .skill-bar {
+            height: 10px;
+            border-radius: 5px;
+            background: #f0f0f0;
+            box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            border-radius: 5px;
+            transition: width 1.5s ease;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .input-field {
+            border-radius: 10px;
+            background: #f0f0f0;
+            box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff;
+            transition: all 0.3s ease;
+        }
+        .input-field:focus {
+            box-shadow: inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff, 0 0 0 2px rgba(108, 92, 231, 0.3);
+        }
+        .neumorph-text {
+            color: #6c5ce7;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.1),
+                -2px -2px 4px rgba(255, 255, 255, 0.8);
+        }
+        .neumorph-text-3d {
+            position: relative;
+            color: #6c5ce7;
+        }
+
+        .neumorph-text-3d::before {
+            content: attr(data-text);
+            position: absolute;
+            color: transparent;
+            text-shadow:
+                4px 4px 6px rgba(0, 0, 0, 0.1),
+                -4px -4px 6px rgba(255, 255, 255, 0.8);
+            z-index: -1;
+        }
+
+        .neumorph-text-gradient {
+            background: linear-gradient(145deg, #e0e0e0, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.05),
+                -2px -2px 4px rgba(255, 255, 255, 0.8);
+        }
+        
+
+        .scrolling-text-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 1.5rem 0;
+        }
+
+        .scrolling-text-track {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            animation: scroll 30s linear infinite;
+        }
+
+        .scrolling-text {
+            display: inline-flex;
+            align-items: center;
+            height: 50%;
+            margin: 0 1.5rem;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            background: #e0e5ec;
+            box-shadow:
+                8px 8px 16px #bebebe,
+                -8px -8px 16px #ffffff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #6c5ce7;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scrolling-text i {
+            margin-right: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .scrolling-text:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                12px 12px 24px #bebebe,
+                -12px -12px 24px #ffffff;
+            color: #a29bfe;
+        }
+
+        .scrolling-text.checked {
+            color: #00b894;
+            position: relative;
+        }
+
+        .scrolling-text.checked::after {
+            content: '✓';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            background: #00b894;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            box-shadow:
+                3px 3px 6px #bebebe,
+                -3px -3px 6px #ffffff;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Pause animation on hover */
+        .scrolling-text-container:hover .scrolling-text-track {
+            animation-play-state: paused;
+        }
+.scrolling-text-container::before {
+            left: 0;
+            background: linear-gradient(90deg, #e0e5ec 30%, transparent);
+        }
+
+        .scrolling-text-container::after {
+            right: 0;
+            background: linear-gradient(90deg, transparent, #e0e5ec 70%);
+        }

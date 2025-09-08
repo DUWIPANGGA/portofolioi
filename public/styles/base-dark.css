@@ -1,0 +1,7 @@
+ body.dark {
+            background-color: #1a1a2e;
+            color: #f5f6fa;
+        }
+        body.dark .cursor {
+            mix-blend-mode: screen;
+        }
