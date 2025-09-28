@@ -27,7 +27,7 @@ class PortfolioController extends Controller
                 $query->orderBy('order');
             },
             'projects' => function($query) {
-                $query->orderBy('order')->with('technologies');
+                $query->orderBy('project_date')->with('technologies');
             },
             'testimonials' => function($query) {
                 $query->orderBy('order');
