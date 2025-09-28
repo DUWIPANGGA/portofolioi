@@ -31,7 +31,7 @@
                     <!-- Title -->
                     <div>   
                         <label for="title" class="block text-sm font-medium mb-2">Professional Title</label>
-                        <input type="text" id="title" name="title" value="{{ old('title', $profile->title ?? '') }}"
+                        <input type="text" id="title" name="title" value="{{ old('title', $user->profile->title ?? '') }}"
                                class="w-full input-field dark:input-field px-4 py-2">
                         @error('title')
                             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

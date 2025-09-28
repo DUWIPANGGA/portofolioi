@@ -37,8 +37,9 @@ public function edit()
 {
     $user = Auth::user();
     $user->load('profile');
-
-    return view('admin.profiles.edit', compact('user'));
+$profile = $user->profile;
+// dd($profile->social_links);
+    return view('admin.profiles.edit', compact('user','profile'));
 }
 
 public function update(Request $request, Profile $profile)
