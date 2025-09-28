@@ -41,56 +41,45 @@ public function edit()
     return view('admin.profiles.edit', compact('user'));
 }
 
-    public function update(Request $request, User $user)
-    {
-        $request->validate([
-            'title'         => 'nullable|string|max:255',
-            'bio'           => 'nullable|string',
-            'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'phone'         => 'nullable|string|max:20',
-            'location'      => 'nullable|string|max:255',
-            'cv'            => 'nullable|file|mimes:pdf,doc,docx|max:5120',
-            'social_links'  => 'nullable|array',
-            'social_links.*'=> 'nullable|url'
-        ]);
+public function update(Request $request, Profile $profile)
+{
+    $user = Auth::user();
 
-        $profileData = $request->except(['avatar', 'cv', 'social_links']);
+    $request->validate([
+        'title'         => 'nullable|string|max:255',
+        'bio'           => 'nullable|string',
+        'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'phone'         => 'nullable|string|max:20',
+        'location'      => 'nullable|string|max:255',
+        'cv'            => 'nullable|file|mimes:pdf,doc,docx|max:5120',
+        'social_links'  => 'nullable|array',
+        'social_links.*'=> 'nullable|url'
+    ]);
 
-        // Handle avatar upload
-        if ($request->hasFile('avatar')) {
-            if ($user->profile && $user->profile->avatar) {
-                Storage::disk('public')->delete($user->profile->avatar);
-            }
+    $profileData = $request->except(['avatar', 'cv', 'social_links']);
 
-            $path = $request->file('avatar')->store('avatars', 'public');
-            $profileData['avatar'] = $path;
+    if ($request->hasFile('avatar')) {
+        if ($user->profile && $user->profile->avatar) {
+            Storage::disk('public')->delete($user->profile->avatar);
         }
-
-        // Handle CV upload
-        if ($request->hasFile('cv')) {
-            if ($user->profile && $user->profile->cv_path) {
-                Storage::disk('public')->delete($user->profile->cv_path);
-            }
-
-            $path = $request->file('cv')->store('cvs', 'public');
-            $profileData['cv_path'] = $path;
-        }
-
-        // Handle social links
-        if ($request->has('social_links')) {
-            $profileData['social_links'] = json_encode(
-                array_filter($request->social_links)
-            );
-        }
-
-        // Update or create profile
-        $user->profile()->updateOrCreate(
-            ['user_id' => $user->id],
-            $profileData
-        );
-
-        return redirect()
-            ->route('admin.profiles.show', $user->id)
-            ->with('success', 'Profile updated successfully.');
+        $profileData['avatar'] = $request->file('avatar')->store('avatars', 'public');
     }
+
+    if ($request->hasFile('cv')) {
+        if ($user->profile && $user->profile->cv_path) {
+            Storage::disk('public')->delete($user->profile->cv_path);
+        }
+        $profileData['cv_path'] = $request->file('cv')->store('cvs', 'public');
+    }
+
+    if ($request->has('social_links')) {
+        $profileData['social_links'] = json_encode(array_filter($request->social_links));
+    }
+
+        $profile->update($profileData);
+
+
+    return redirect()->route('profile.edit')->with('success', 'Profile updated successfully.');
+}
+
 }

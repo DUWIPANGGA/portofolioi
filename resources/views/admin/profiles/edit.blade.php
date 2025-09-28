@@ -21,15 +21,15 @@
     </div>
 
     <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden p-6">
-        <form action="{{ route('admin.profiles.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            
+<form action="{{ route('admin.profiles.update', $user->profile->id) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Left Column -->
                 <div class="space-y-6">
                     <!-- Title -->
-                    <div>
+                    <div>   
                         <label for="title" class="block text-sm font-medium mb-2">Professional Title</label>
                         <input type="text" id="title" name="title" value="{{ old('title', $profile->title ?? '') }}"
                                class="w-full input-field dark:input-field px-4 py-2">

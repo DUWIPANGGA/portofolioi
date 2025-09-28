@@ -10,64 +10,70 @@
     <link rel="stylesheet" href="{{ asset('main.css') }}">
     <script>
         tailwind.config = {
-          darkMode: 'class',
-          theme: {
-            extend: {
-              colors: {
-                primary: '#6c5ce7',
-                secondary: '#a29bfe',
-                dark: {
-                  100: '#1a1a2e',
-                  200: '#16213e',
-                  300: '#0f3460'
-                },
-                light: '#f5f6fa'
-              },
-              fontFamily: {
-                sans: ['Poppins', 'sans-serif']
-              },
-              boxShadow: {
-                'neumorph': '20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff',
-                'neumorph-dark': '20px 20px 60px #0a0a0f, -20px -20px 60px #2a2a4d',
-                'neumorph-inset': 'inset 10px 10px 20px #d9d9d9, inset -10px -10px 20px #ffffff',
-                'neumorph-inset-dark': 'inset 10px 10px 20px #0a0a0f, inset -10px -10px 20px #2a2a4d',
-                'neumorph-3d': '15px 15px 30px #d9d9d9, -15px -15px 30px #ffffff, 0 0 0 3px rgba(108, 92, 231, 0.2)',
-                'neumorph-3d-dark': '15px 15px 30px #0a0a0f, -15px -15px 30px #2a2a4d, 0 0 0 3px rgba(108, 92, 231, 0.2)',
-                'neumorph-btn': '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff',
-                'neumorph-btn-dark': '5px 5px 10px #0a0a0f, -5px -5px 10px #2a2a4d',
-                'neumorph-btn-active': 'inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff',
-                'neumorph-btn-active-dark': 'inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d'
-              },
-              animation: {
-                'float': 'float 6s ease-in-out infinite',
-                'float-2': 'float 4s ease-in-out infinite',
-                'float-3': 'float 5s ease-in-out infinite',
-                'pulse-slow': 'pulse 6s infinite',
-                'spin-slow': 'spin 20s linear infinite'
-              },
-              keyframes: {
-                float: {
-                  '0%, 100%': { transform: 'translateY(0)' },
-                  '50%': { transform: 'translateY(-20px)' }
+            darkMode: 'class'
+            , theme: {
+                extend: {
+                    colors: {
+                        primary: '#6c5ce7'
+                        , secondary: '#a29bfe'
+                        , dark: {
+                            100: '#1a1a2e'
+                            , 200: '#16213e'
+                            , 300: '#0f3460'
+                        }
+                        , light: '#f5f6fa'
+                    }
+                    , fontFamily: {
+                        sans: ['Poppins', 'sans-serif']
+                    }
+                    , boxShadow: {
+                        'neumorph': '20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff'
+                        , 'neumorph-dark': '20px 20px 60px #0a0a0f, -20px -20px 60px #2a2a4d'
+                        , 'neumorph-inset': 'inset 10px 10px 20px #d9d9d9, inset -10px -10px 20px #ffffff'
+                        , 'neumorph-inset-dark': 'inset 10px 10px 20px #0a0a0f, inset -10px -10px 20px #2a2a4d'
+                        , 'neumorph-3d': '15px 15px 30px #d9d9d9, -15px -15px 30px #ffffff, 0 0 0 3px rgba(108, 92, 231, 0.2)'
+                        , 'neumorph-3d-dark': '15px 15px 30px #0a0a0f, -15px -15px 30px #2a2a4d, 0 0 0 3px rgba(108, 92, 231, 0.2)'
+                        , 'neumorph-btn': '5px 5px 10px #d9d9d9, -5px -5px 10px #ffffff'
+                        , 'neumorph-btn-dark': '5px 5px 10px #0a0a0f, -5px -5px 10px #2a2a4d'
+                        , 'neumorph-btn-active': 'inset 5px 5px 10px #d9d9d9, inset -5px -5px 10px #ffffff'
+                        , 'neumorph-btn-active-dark': 'inset 5px 5px 10px #0a0a0f, inset -5px -5px 10px #2a2a4d'
+                    }
+                    , animation: {
+                        'float': 'float 6s ease-in-out infinite'
+                        , 'float-2': 'float 4s ease-in-out infinite'
+                        , 'float-3': 'float 5s ease-in-out infinite'
+                        , 'pulse-slow': 'pulse 6s infinite'
+                        , 'spin-slow': 'spin 20s linear infinite'
+                    }
+                    , keyframes: {
+                        float: {
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            }
+                            , '50%': {
+                                transform: 'translateY(-20px)'
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
         }
+
     </script>
 </head>
 <body class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
     <!-- Custom Cursor -->
+    {{-- {{ dd($user); }} --}}
     @include('partials.ui-kit')
 
     @include('partials.navbar')
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center px-4 py-20 pt-24">
+    <section id="home" class="min-h-screen flx items-center justify-center px-4 py-20 pt-24">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="section">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-gradient">{{ $user->name }}</span></h1>
-                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Web Developer</h2>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6">Embedded & Full Stack Developer</h2>
                 <p class="text-lg mb-8 text-gray-600 dark:text-gray-400">
                     {{ $user->profile->bio ?? 'I create beautiful, interactive web experiences with modern technologies and innovative design.' }}
                 </p>
@@ -78,23 +84,23 @@
                 <div class="mt-8 flex flex-wrap items-center gap-6">
                     <div class="flex space-x-4">
                         @if($user->profile->social_links)
-                            @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
-                            @foreach($socialLinks as $platform => $url)
-                                @if($url)
-                                    <a href="{{ $url }}" target="_blank" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition">
-                                        <i class="fab fa-{{ $platform }} text-xl"></i>
-                                    </a>
-                                @endif
-                            @endforeach
+                        @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
+                        @foreach($socialLinks as $platform => $url)
+                        @if($url)
+                        <a href="{{ $url }}" target="_blank" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition">
+                            <i class="fab fa-{{ $platform }} text-xl"></i>
+                        </a>
+                        @endif
+                        @endforeach
                         @else
-                            <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
-                            <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+                        <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-github text-xl"></i></a>
+                        <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-linkedin-in text-xl"></i></a>
                         @endif
                     </div>
                     @if($user->profile->cv_path)
-                        <a href="{{ asset('storage/' . $user->profile->cv_path) }}" download class="text-sm font-medium text-primary hover:underline flex items-center">
-                            <i class="fas fa-download mr-2"></i> Download CV
-                        </a>
+                    <a href="{{ asset('storage/' . $user->profile->cv_path) }}" download class="text-sm font-medium text-primary hover:underline flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download CV
+                    </a>
                     @endif
                 </div>
             </div>
@@ -109,11 +115,11 @@
                     <!-- Profile Image Container -->
                     <div class="absolute left-1/2 -translate-x-1/2 top-8 w-40 h-40 neumorph rounded-full overflow-hidden border-4 border-white dark:border-gray-800 z-10 shadow-lg">
                         @if($user->profile->avatar)
-                            <img src="{{ asset('storage/' . $user->profile->avatar) }}" alt="Profile Photo" class="w-full h-full object-cover">
+                        <img src="{{ asset('storage/' . $user->profile->avatar) }}" alt="Profile Photo" class="w-full h-full object-cover">
                         @else
-                            <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                                <i class="fas fa-user text-4xl text-gray-500"></i>
-                            </div>
+                        <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
+                            <i class="fas fa-user text-4xl text-gray-500"></i>
+                        </div>
                         @endif
                     </div>
 
@@ -121,7 +127,7 @@
                     <div class="absolute inset-0 flex flex-col items-center justify-end pb-8 pt-24 px-6 text-center">
                         <!-- Name and Title -->
                         <h2 class="text-2xl font-bold mb-1">{{ $user->name }}</h2>
-                        <p class="text-primary font-medium mb-4">Web Developer</p>
+                        <p class="text-primary font-medium mb-4">Embedded & Full Stack Developer</p>
 
                         <!-- Short Bio -->
                         <p class="text-gray-600 dark:text-gray-400 mb-6">
@@ -131,21 +137,21 @@
                         <!-- Social Links -->
                         <div class="flex space-x-4">
                             @if($user->profile->social_links)
-                                @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
-                                @foreach(array_slice($socialLinks, 0, 4) as $platform => $url)
-                                    @if($url)
-                                        <a href="{{ $url }}" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
-                                            <i class="fab fa-{{ $platform }}"></i>
-                                        </a>
-                                    @endif
-                                @endforeach
+                            @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
+                            @foreach(array_slice($socialLinks, 0, 4) as $platform => $url)
+                            @if($url)
+                            <a href="{{ $url }}" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
+                                <i class="fab fa-{{ $platform }}"></i>
+                            </a>
+                            @endif
+                            @endforeach
                             @else
-                                <a href="#" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                            <a href="#" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 neumorph-btn rounded-full flex items-center justify-center hover:text-primary transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
                             @endif
                         </div>
                     </div>
@@ -181,7 +187,7 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section">About <span class="text-gradient">Me</span></h2>
             <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16 section">Get to know the person behind the code</p>
 
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="grid md:grid-row-2 gap-12 items-center">
                 <div class="section" style="transition-delay: 0.1s">
                     <div class="neumorph-3d p-8 rounded-3xl">
                         <h3 class="text-2xl font-bold mb-4">Personal Profile</h3>
@@ -199,16 +205,16 @@
                                 <p class="text-gray-600 dark:text-gray-400">{{ $user->email }}</p>
                             </div>
                             @if($user->profile->phone)
-                                <div class="neumorph-btn p-4 rounded-xl">
-                                    <h4 class="font-bold mb-2">Phone:</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->phone }}</p>
-                                </div>
+                            <div class="neumorph-btn p-4 rounded-xl">
+                                <h4 class="font-bold mb-2">Phone:</h4>
+                                <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->phone }}</p>
+                            </div>
                             @endif
                             @if($user->profile->location)
-                                <div class="neumorph-btn p-4 rounded-xl">
-                                    <h4 class="font-bold mb-2">Location:</h4>
-                                    <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->location }}</p>
-                                </div>
+                            <div class="neumorph-btn p-4 rounded-xl">
+                                <h4 class="font-bold mb-2">Location:</h4>
+                                <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->location }}</p>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -218,25 +224,25 @@
                         <h3 class="text-2xl font-bold mb-6">Professional Journey</h3>
                         <div class="space-y-6">
                             @forelse($user->experiences as $experience)
-                                <div class="flex">
-                                    <div class="mr-4">
-                                        <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
-                                            <i class="fas fa-briefcase"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold">{{ $experience->position }}</h4>
-                                        <p class="text-gray-600 dark:text-gray-400 mb-2">{{ $experience->company }} • 
-                                            {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }} - 
-                                            {{ $experience->end_date ? \Carbon\Carbon::parse($experience->end_date)->format('M Y') : 'Present' }}
-                                        </p>
-                                        @if($experience->description)
-                                            <p class="text-gray-600 dark:text-gray-400 text-sm">{{ $experience->description }}</p>
-                                        @endif
+                            <div class="flex">
+                                <div class="mr-4">
+                                    <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
+                                        <i class="fas fa-briefcase"></i>
                                     </div>
                                 </div>
+                                <div>
+                                    <h4 class="font-bold">{{ $experience->position }}</h4>
+                                    <p class="text-gray-600 dark:text-gray-400 mb-2">{{ $experience->company }} •
+                                        {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }} -
+                                        {{ $experience->end_date ? \Carbon\Carbon::parse($experience->end_date)->format('M Y') : 'Present' }}
+                                    </p>
+                                    @if($experience->description)
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">{{ $experience->description }}</p>
+                                    @endif
+                                </div>
+                            </div>
                             @empty
-                                <p class="text-gray-600 dark:text-gray-400">No work experience added yet.</p>
+                            <p class="text-gray-600 dark:text-gray-400">No work experience added yet.</p>
                             @endforelse
                         </div>
 
@@ -244,18 +250,18 @@
                             <h4 class="font-bold mb-4">Education</h4>
                             <div class="space-y-4">
                                 @forelse($user->educations as $education)
-                                    <div>
-                                        <h5 class="font-semibold">{{ $education->degree }}</h5>
-                                        <p class="text-gray-600 dark:text-gray-400">{{ $education->institution }} • 
-                                            {{ \Carbon\Carbon::parse($education->start_date)->format('Y') }} - 
-                                            {{ $education->end_date ? \Carbon\Carbon::parse($education->end_date)->format('Y') : 'Present' }}
-                                        </p>
-                                        @if($education->field_of_study)
-                                            <p class="text-gray-600 dark:text-gray-400 text-sm">Field: {{ $education->field_of_study }}</p>
-                                        @endif
-                                    </div>
+                                <div>
+                                    <h5 class="font-semibold">{{ $education->degree }}</h5>
+                                    <p class="text-gray-600 dark:text-gray-400">{{ $education->institution }} •
+                                        {{ \Carbon\Carbon::parse($education->start_date)->format('Y') }} -
+                                        {{ $education->end_date ? \Carbon\Carbon::parse($education->end_date)->format('Y') : 'Present' }}
+                                    </p>
+                                    @if($education->field_of_study)
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm">Field: {{ $education->field_of_study }}</p>
+                                    @endif
+                                </div>
                                 @empty
-                                    <p class="text-gray-600 dark:text-gray-400">No education information added yet.</p>
+                                <p class="text-gray-600 dark:text-gray-400">No education information added yet.</p>
                                 @endforelse
                             </div>
                         </div>
@@ -277,22 +283,22 @@
                         <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
                         <div class="space-y-6">
                             @forelse($user->skills as $skill)
-                                <div>
-                                    <div class="flex justify-between items-center mb-2">
-                                        <span class="flex items-center">
-                                            @if($skill->icon)
-                                                <i class="{{ $skill->icon }} mr-2"></i>
-                                            @endif
-                                            {{ $skill->name }}
-                                        </span>
-                                        <span>{{ $skill->percentage }}%</span>
-                                    </div>
-                                    <div class="skill-bar">
-                                        <div class="skill-progress" style="width: {{ $skill->percentage }}%" data-width="{{ $skill->percentage }}%"></div>
-                                    </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="flex items-center">
+                                        @if($skill->icon)
+                                        <i class="{{ $skill->icon }} mr-2"></i>
+                                        @endif
+                                        {{ $skill->name }}
+                                    </span>
+                                    <span>{{ $skill->percentage }}%</span>
                                 </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: {{ $skill->percentage }}%" data-width="{{ $skill->percentage }}%"></div>
+                                </div>
+                            </div>
                             @empty
-                                <p class="text-gray-600 dark:text-gray-400">No skills added yet.</p>
+                            <p class="text-gray-600 dark:text-gray-400">No skills added yet.</p>
                             @endforelse
                         </div>
                     </div>
@@ -303,23 +309,23 @@
 
                         <div class="space-y-6">
                             @forelse($user->services as $service)
-                                <div class="neumorph-btn p-4 rounded-xl">
-                                    <div class="flex items-start">
-                                        <div class="mr-4 text-primary">
-                                            @if($service->icon)
-                                                <i class="{{ $service->icon }} text-2xl"></i>
-                                            @else
-                                                <i class="fas fa-laptop-code text-2xl"></i>
-                                            @endif
-                                        </div>
-                                        <div>
-                                            <h4 class="font-bold mb-2">{{ $service->title }}</h4>
-                                            <p class="text-gray-600 dark:text-gray-400">{{ $service->description }}</p>
-                                        </div>
+                            <div class="neumorph-btn p-4 rounded-xl">
+                                <div class="flex items-start">
+                                    <div class="mr-4 text-primary">
+                                        @if($service->icon)
+                                        <i class="{{ $service->icon }} text-2xl"></i>
+                                        @else
+                                        <i class="fas fa-laptop-code text-2xl"></i>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-2">{{ $service->title }}</h4>
+                                        <p class="text-gray-600 dark:text-gray-400">{{ $service->description }}</p>
                                     </div>
                                 </div>
+                            </div>
                             @empty
-                                <p class="text-gray-600 dark:text-gray-400">No services added yet.</p>
+                            <p class="text-gray-600 dark:text-gray-400">No services added yet.</p>
                             @endforelse
                         </div>
                     </div>
@@ -332,21 +338,21 @@
     <div class="scrolling-text-container section">
         <div class="scrolling-text-track">
             @foreach($user->skills as $skill)
-                <div class="scrolling-text">
-                    @if($skill->icon)
-                        <i class="{{ $skill->icon }}"></i>
-                    @endif
-                    {{ $skill->name }}
-                </div>
+            <div class="scrolling-text">
+                @if($skill->icon)
+                <i class="{{ $skill->icon }}"></i>
+                @endif
+                {{ $skill->name }}
+            </div>
             @endforeach
             <!-- Duplicate for seamless looping -->
             @foreach($user->skills as $skill)
-                <div class="scrolling-text">
-                    @if($skill->icon)
-                        <i class="{{ $skill->icon }}"></i>
-                    @endif
-                    {{ $skill->name }}
-                </div>
+            <div class="scrolling-text">
+                @if($skill->icon)
+                <i class="{{ $skill->icon }}"></i>
+                @endif
+                {{ $skill->name }}
+            </div>
             @endforeach
         </div>
     </div>
@@ -358,70 +364,77 @@
             <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16 section">Selected works demonstrating my capabilities</p>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
                 @forelse($user->projects as $project)
-                    <div class="section">
-                        <div class="neumorph-3d rounded-3xl overflow-hidden neumorph-hover h-full flex flex-col">
-                            <div class="relative h-48 overflow-hidden">
-                                @if($project->image_path)
-                                    <img src="{{ asset('storage/' . $project->image_path) }}" alt="{{ $project->title }}" class="w-full h-full object-cover">
-                                @else
-                                    <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                                        <i class="fas fa-image text-4xl text-gray-500"></i>
-                                    </div>
-                                @endif
-                                <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20"></div>
-                                @if($project->is_featured)
-                                    <div class="absolute top-4 right-4">
-                                        <span class="text-xs px-3 py-1 neumorph-btn rounded-full bg-white dark:bg-gray-800">Featured</span>
-                                    </div>
+                <div class="section">
+                    <div class="neumorph-3d rounded-3xl overflow-hidden neumorph-hover h-full flex flex-col">
+                        <div class="relative h-48 overflow-hidden">
+                            @if($project->image_path)
+                            <img src="{{ asset('storage/' . $project->image_path) }}" alt="{{ $project->title }}" class="w-full h-full object-cover">
+                            @else
+                            <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
+                                <i class="fas fa-image text-4xl text-gray-500"></i>
+                            </div>
+                            @endif
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary to-secondary opacity-20"></div>
+                            @if($project->is_featured)
+                            <div class="absolute top-4 right-4">
+                                <span class="text-xs px-3 py-1 neumorph-btn rounded-full bg-white dark:bg-gray-800">Featured</span>
+                            </div>
+                            @endif
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="text-xl font-bold">{{ $project->title }}</h3>
+                                @if($project->project_date)
+                                <span class="text-xs px-2 py-1 neumorph-btn rounded-full">
+                                    {{ \Carbon\Carbon::parse($project->project_date)->format('Y') }}
+                                </span>
                                 @endif
                             </div>
-                            <div class="p-6 flex-grow">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h3 class="text-xl font-bold">{{ $project->title }}</h3>
-                                    @if($project->project_date)
-                                        <span class="text-xs px-2 py-1 neumorph-btn rounded-full">
-                                            {{ \Carbon\Carbon::parse($project->project_date)->format('Y') }}
-                                        </span>
-                                    @endif
-                                </div>
-                                <p class="text-gray-600 dark:text-gray-400 mb-4">{{ Str::limit($project->description, 100) }}</p>
-                                
-                                {{-- @if($project->technologies)
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        @php
-                                            $techIds = json_decode($project->technologies);
-                                            $technologies = $user->technologies->whereIn('id', $techIds);
-                                        @endphp
-                                        @foreach($technologies as $tech)
-                                            <span class="text-xs px-3 py-1 neumorph-btn rounded-full">{{ $tech->name }}</span>
-                                        @endforeach
-                                    </div>
-                                @endif --}}
-                                
-                                @if($project->client)
-                                    <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                                        <i class="fas fa-user mr-2"></i>
-                                        <span>Client: {{ $project->client }}</span>
-                                    </div>
-                                @endif
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">{{ Str::limit($project->description, 100) }}</p>
+
+                            @if(!empty($project->technologies))
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                @php
+                                $techIds = is_string($project->technologies)
+                                ? json_decode($project->technologies, true)
+                                : $project->technologies;
+
+                                $technologies = \App\Models\Technology::whereIn('id', $techIds)->get();
+                                @endphp
+
+                                @foreach($technologies as $tech)
+                                <span class="text-xs px-3 py-1 neumorph-btn rounded-full">{{ $tech->name }}</span>
+                                @endforeach
                             </div>
-                            <div class="p-6 pt-0 flex justify-between items-center">
-                                @if($project->case_study_url)
-                                    <a href="{{ $project->case_study_url }}" class="neumorph-btn px-4 py-2 text-sm font-medium inline-flex items-center hover:text-primary transition">
-                                        Case Study <i class="fas fa-arrow-right ml-2"></i>
-                                    </a>
-                                @endif
-                                @if($project->demo_url)
-                                    <a href="{{ $project->demo_url }}" target="_blank" class="text-sm text-primary hover:underline flex items-center">
-                                        Live Demo <i class="fas fa-external-link-alt ml-1"></i>
-                                    </a>
-                                @endif
+                            @endif
+
+
+
+                            @if($project->client)
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                                <i class="fas fa-user mr-2"></i>
+                                <span>Client: {{ $project->client }}</span>
                             </div>
+                            @endif
+                        </div>
+                        <div class="p-6 pt-0 flex justify-between items-center">
+                            @if($project->case_study_url)
+                            <a href="{{ $project->case_study_url }}" class="neumorph-btn px-4 py-2 text-sm font-medium inline-flex items-center hover:text-primary transition">
+                                Case Study <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                            @endif
+                            @if($project->demo_url)
+                            <a href="{{ $project->demo_url }}" target="_blank" class="text-sm text-primary hover:underline flex items-center">
+                                Live Demo <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                            @endif
                         </div>
                     </div>
+                </div>
                 @empty
-                    <p class="text-gray-600 dark:text-gray-400 col-span-3 text-center">No projects added yet.</p>
+                <p class="text-gray-600 dark:text-gray-400 col-span-3 text-center">No projects added yet.</p>
                 @endforelse
             </div>
         </div>
@@ -439,42 +452,41 @@
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @forelse($user->testimonials as $testimonial)
-                    <div class="section">
-                        <div class="neumorph-3d p-8 rounded-3xl h-full">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 rounded-full overflow-hidden mr-4 neumorph">
-                                    @if($testimonial->client_avatar)
-                                        <img src="{{ asset('storage/' . $testimonial->client_avatar) }}" alt="{{ $testimonial->client_name }}" class="w-full h-full object-cover">
-                                    @else
-                                        <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
-                                            <i class="fas fa-user text-xl text-gray-500"></i>
-                                        </div>
+                <div class="section">
+                    <div class="neumorph-3d p-8 rounded-3xl h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-16 h-16 rounded-full overflow-hidden mr-4 neumorph">
+                                @if($testimonial->client_avatar)
+                                <img src="{{ asset('storage/' . $testimonial->client_avatar) }}" alt="{{ $testimonial->client_name }}" class="w-full h-full object-cover">
+                                @else
+                                <div class="w-full h-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center">
+                                    <i class="fas fa-user text-xl text-gray-500"></i>
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <h4 class="font-bold">{{ $testimonial->client_name }}</h4>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                    {{ $testimonial->client_position }}
+                                    @if($testimonial->client_company)
+                                    , {{ $testimonial->client_company }}
                                     @endif
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">{{ $testimonial->client_name }}</h4>
-                                    <p class="text-gray-600 dark:text-gray-400 text-sm">
-                                        {{ $testimonial->client_position }}
-                                        @if($testimonial->client_company)
-                                            , {{ $testimonial->client_company }}
-                                        @endif
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="text-gray-600 dark:text-gray-400 mb-6">
-                                <i class="fas fa-quote-left text-primary opacity-50 mr-2"></i>
-                                {{ $testimonial->content }}
-                                <i class="fas fa-quote-right text-primary opacity-50 ml-2"></i>
-                            </div>
-                            <div class="flex">
-                                @for($i = 0; $i < 5; $i++)
-                                    <i class="fas fa-star {{ $i < $testimonial->rating ? 'text-yellow-400' : 'text-gray-300' }}"></i>
-                                @endfor
+                                </p>
                             </div>
                         </div>
+                        <div class="text-gray-600 dark:text-gray-400 mb-6">
+                            <i class="fas fa-quote-left text-primary opacity-50 mr-2"></i>
+                            {{ $testimonial->content }}
+                            <i class="fas fa-quote-right text-primary opacity-50 ml-2"></i>
+                        </div>
+                        <div class="flex">
+                            @for($i = 0; $i < 5; $i++) <i class="fas fa-star {{ $i < $testimonial->rating ? 'text-yellow-400' : 'text-gray-300' }}"></i>
+                                @endfor
+                        </div>
                     </div>
+                </div>
                 @empty
-                    <p class="text-gray-600 dark:text-gray-400 col-span-3 text-center">No testimonials added yet.</p>
+                <p class="text-gray-600 dark:text-gray-400 col-span-3 text-center">No testimonials added yet.</p>
                 @endforelse
             </div>
         </div>
@@ -503,52 +515,52 @@
                                     <a href="mailto:{{ $user->email }}" class="text-sm text-primary hover:underline">Send email</a>
                                 </div>
                             </div>
-                            
+
                             @if($user->profile->phone)
-                                <div class="flex items-start">
-                                    <div class="mr-4">
-                                        <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
-                                            <i class="fas fa-phone-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold mb-1">Phone</h4>
-                                        <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->phone }}</p>
-                                        <a href="tel:{{ $user->profile->phone }}" class="text-sm text-primary hover:underline">Call me</a>
+                            <div class="flex items-start">
+                                <div class="mr-4">
+                                    <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
+                                        <i class="fas fa-phone-alt"></i>
                                     </div>
                                 </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Phone</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->phone }}</p>
+                                    <a href="tel:{{ $user->profile->phone }}" class="text-sm text-primary hover:underline">Call me</a>
+                                </div>
+                            </div>
                             @endif
-                            
+
                             @if($user->profile->location)
-                                <div class="flex items-start">
-                                    <div class="mr-4">
-                                        <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold mb-1">Location</h4>
-                                        <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->location }}</p>
-                                        <a href="https://maps.google.com?q={{ urlencode($user->profile->location) }}" target="_blank" class="text-sm text-primary hover:underline">View on map</a>
+                            <div class="flex items-start">
+                                <div class="mr-4">
+                                    <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
+                                        <i class="fas fa-map-marker-alt"></i>
                                     </div>
                                 </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Location</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">{{ $user->profile->location }}</p>
+                                    <a href="https://maps.google.com?q={{ urlencode($user->profile->location) }}" target="_blank" class="text-sm text-primary hover:underline">View on map</a>
+                                </div>
+                            </div>
                             @endif
                         </div>
                         <div class="mt-8">
                             <h4 class="font-bold mb-4">Follow Me</h4>
                             <div class="flex space-x-4">
                                 @if($user->profile->social_links)
-                                    @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
-                                    @foreach($socialLinks as $platform => $url)
-                                        @if($url)
-                                            <a href="{{ $url }}" target="_blank" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition">
-                                                <i class="fab fa-{{ $platform }}"></i>
-                                            </a>
-                                        @endif
-                                    @endforeach
+                                @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
+                                @foreach($socialLinks as $platform => $url)
+                                @if($url)
+                                <a href="{{ $url }}" target="_blank" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition">
+                                    <i class="fab fa-{{ $platform }}"></i>
+                                </a>
+                                @endif
+                                @endforeach
                                 @else
-                                    <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-github"></i></a>
-                                    <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-github"></i></a>
+                                <a href="#" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
                                 @endif
                             </div>
                         </div>
@@ -560,11 +572,11 @@
                         <form class="space-y-6" id="contactForm">
                             <div>
                                 <label for="name" class="block mb-2 font-medium">Your Name</label>
-                                <input type="text" id="name" class="w-full input-field px-4 py-3" placeholder="John Doe" required>
+                                <input type="text" id="name" class="w-full input-field px-4 py-3" placeholder="fulan fulanah" required>
                             </div>
                             <div>
                                 <label for="email" class="block mb-2 font-medium">Your Email</label>
-                                <input type="email" id="email" class="w-full input-field px-4 py-3" placeholder="john@example.com" required>
+                                <input type="email" id="email" class="w-full input-field px-4 py-3" placeholder="fulan@example.com" required>
                             </div>
                             <div>
                                 <label for="subject" class="block mb-2 font-medium">Subject</label>
@@ -591,23 +603,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-800 py-12 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex justify-center space-x-6 mb-6">
-                @if($user->profile->social_links)
-                    @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
-                    @foreach($socialLinks as $platform => $url)
-                        @if($url)
-                            <a href="{{ $url }}" target="_blank" class="neumorph-btn w-12 h-12 flex items-center justify-center hover:text-primary transition">
-                                <i class="fab fa-{{ $platform }}"></i>
-                            </a>
-                        @endif
-                    @endforeach
-                @endif
-            </div>
-            <p class="text-gray-600 dark:text-gray-400">&copy; {{ date('Y') }} {{ $user->name }}. All rights reserved.</p>
-        </div>
-    </footer>
+    @include('partials.footer')
 
     <script>
         // Dark Mode Toggle
@@ -875,6 +871,7 @@
                 });
             });
         }
+
     </script>
 </body>
 </html>

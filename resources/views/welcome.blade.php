@@ -66,8 +66,8 @@
     <section id="home" class="min-h-screen flex items-center justify-center px-4 py-20">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="section">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-gradient">duwipangga</span></h1>
-                <h2 class="text-2xl md:text-3xl font-semibold mb-6 neumorph-text">Frontend Developer & UI Specialist</h2>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-gradient">{{ $user->name }}</span></h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 neumorph-text">Full Stack Developer</h2>
                 <p class="text-lg mb-8 text-gray-600 dark:text-gray-400">I create beautiful, interactive web experiences with modern technologies and innovative design. With 5+ years of experience, I bridge the gap between design and technology.</p>
                 <div class="flex space-x-4">
                     <a href="#projects" class="neumorph-btn px-6 py-3 font-medium text-primary hover:text-white hover:bg-primary transition-all duration-300">View My Work</a>

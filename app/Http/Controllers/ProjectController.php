@@ -43,10 +43,11 @@ class ProjectController extends Controller
         $validated['user_id'] = Auth::id();
 
         // handle file uploads
-        $validated['image_path'] = $request->file('image_path')->store('projects');
-        if ($request->hasFile('featured_image_path')) {
-            $validated['featured_image_path'] = $request->file('featured_image_path')->store('projects/featured');
-        }
+$validated['image_path'] = $request->file('image_path')->store('projects', 'public');
+
+if ($request->hasFile('featured_image_path')) {
+    $validated['featured_image_path'] = $request->file('featured_image_path')->store('projects/featured', 'public');
+}
 
         $project = Project::create($validated);
 
@@ -83,48 +84,53 @@ public function edit($id)
 }
 
     public function update(Request $request, Project $project)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:projects,slug,'.$project->id,
-            'description' => 'required|string',
-            'image_path' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'featured_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'project_date' => 'required|date',
-            'client' => 'nullable|string|max:255',
-            'demo_url' => 'nullable|url',
-            'case_study_url' => 'nullable|url',
-            'technologies' => 'nullable|array',
-            'technologies.*' => 'exists:technologies,id',
-        ]);
-
-        // Handle file uploads
-        if ($request->hasFile('image_path')) {
-            // Delete old image
-            Storage::delete($project->image_path);
-            $validated['image_path'] = $request->file('image_path')->store('projects');
+{
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'slug' => 'required|string|max:255|unique:projects,slug,'.$project->id,
+        'description' => 'required|string',
+        'image_path' => 'sometimes|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'featured_image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'project_date' => 'required|date',
+        'client' => 'nullable|string|max:255',
+        'demo_url' => 'nullable|url',
+        'case_study_url' => 'nullable|url',
+        'technologies' => 'nullable|array',
+        'technologies.*' => 'exists:technologies,id',
+    ]);
+    // Handle file uploads
+    if ($request->hasFile('image_path')) {
+        // Delete old image
+        if ($project->image_path) {
+            Storage::disk('public')->delete($project->image_path);
         }
-
-        if ($request->hasFile('featured_image_path')) {
-            // Delete old featured image if exists
-            if ($project->featured_image_path) {
-                Storage::delete($project->featured_image_path);
-            }
-            $validated['featured_image_path'] = $request->file('featured_image_path')->store('projects/featured');
-        }
-
-        $project->update($validated);
-
-        // Sync technologies with detaching
-        if ($request->has('technologies')) {
-            $project->technologies()->sync($request->technologies);
-        } else {
-            $project->technologies()->detach();
-        }
-
-        return redirect()->route('admin.projects.index')
-            ->with('success', 'Project updated successfully.');
+        
+        $validated['image_path'] = $request->file('image_path')->store('projects', 'public');
     }
+    // dd($validated['image_path']);
+
+    if ($request->hasFile('featured_image_path')) {
+        // Delete old featured image if exists
+        if ($project->featured_image_path) {
+            Storage::disk('public')->delete($project->featured_image_path);
+        }
+
+        $validated['featured_image_path'] = $request->file('featured_image_path')->store('projects/featured', 'public');
+    }
+
+    $project->update($validated);
+
+    // Sync technologies with detaching
+    if ($request->has('technologies')) {
+        $project->technologies()->sync($request->technologies);
+    } else {
+        $project->technologies()->detach();
+    }
+
+    return redirect()->route('admin.projects.index')
+        ->with('success', 'Project updated successfully.');
+}
+
 
     public function destroy(Project $project)
     {
