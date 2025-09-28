@@ -89,13 +89,18 @@
 
 @push('scripts')
 <script>
-    // Set default end date to 4 years after start date
+    // Set default end date = 4 tahun setelah start date
     document.getElementById('start_date').addEventListener('change', function() {
         const startDate = new Date(this.value);
-        if (startDate && !document.getElementById('end_date').value) {
+        const endDateInput = document.getElementById('end_date');
+
+        if (startDate && !endDateInput.value) {
             const endDate = new Date(startDate);
             endDate.setFullYear(endDate.getFullYear() + 4);
-            document.getElementById('end_date').valueAsDate = endDate;
+
+            // format YYYY-MM-DD biar konsisten
+            const formatted = endDate.toISOString().split('T')[0];
+            endDateInput.value = formatted;
         }
     });
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,21 +21,27 @@ class EducationController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'degree' => 'required|string|max:255',
-            'institution' => 'required|string|max:255',
-            'field_of_study' => 'nullable|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-            'order' => 'nullable|integer'
-        ]);
-$validated['user_id'] = Auth::user()->id;
-        Education::create($validated);
+{
+    $validated = $request->validate([
+        'degree' => 'required|string|max:255',
+        'institution' => 'required|string|max:255',
+        'field_of_study' => 'nullable|string|max:255',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after_or_equal:start_date', // ✅ allow same date
+        'order' => 'nullable|integer'
+    ]);
 
-        return redirect()->route('admin.educations.index')
-            ->with('success', 'Education created successfully.');
-    }
+    // pastiin format date ke YYYY-MM-DD
+    $validated['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
+    $validated['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
+
+    $validated['user_id'] = Auth::id();
+
+    Education::create($validated);
+
+    return redirect()->route('admin.educations.index')
+        ->with('success', 'Education created successfully.');
+}
 
     public function show(Education $education)
     {
@@ -47,21 +54,25 @@ $validated['user_id'] = Auth::user()->id;
     }
 
     public function update(Request $request, Education $education)
-    {
-        $validated = $request->validate([
-            'degree' => 'required|string|max:255',
-            'institution' => 'required|string|max:255',
-            'field_of_study' => 'nullable|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-            'order' => 'nullable|integer'
-        ]);
+{
+    $validated = $request->validate([
+        'degree' => 'required|string|max:255',
+        'institution' => 'required|string|max:255',
+        'field_of_study' => 'nullable|string|max:255',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after_or_equal:start_date', // ✅ allow same date
+        'order' => 'nullable|integer'
+    ]);
 
-        $education->update($validated);
+    // pastikan format konsisten YYYY-MM-DD
+    $validated['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
+    $validated['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
 
-        return redirect()->route('admin.educations.index')
-            ->with('success', 'Education updated successfully.');
-    }
+    $education->update($validated);
+
+    return redirect()->route('admin.educations.index')
+        ->with('success', 'Education updated successfully.');
+}
 
     public function destroy(Education $education)
     {
