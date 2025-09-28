@@ -37,10 +37,16 @@ public function edit()
 {
     $user = Auth::user();
     $user->load('profile');
-$profile = $user->profile;
-// dd($profile->social_links);
-    return view('admin.profiles.edit', compact('user','profile'));
+    $profile = $user->profile;
+
+    // Pastikan social_links jadi array
+    $socialLinks = is_string($profile->social_links)
+        ? json_decode($profile->social_links, true)
+        : ($profile->social_links ?? []);
+
+    return view('admin.profiles.edit', compact('user','profile','socialLinks'));
 }
+
 
 public function update(Request $request, Profile $profile)
 {
