@@ -63,7 +63,7 @@
 
     </script>
 </head>
-<body class="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+<body class="min-h-screen w-full bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
     <!-- Custom Cursor -->
     {{-- {{ dd($user); }} --}}
     @include('partials.ui-kit')
@@ -71,7 +71,7 @@
     @include('partials.navbar')
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flx items-center justify-center px-4 py-20 pt-24">
+    <section id="home" class="min-h-screen flex items-center justify-center px-4 py-20 pt-24">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="section">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-gradient">{{ $user->name }}</span></h1>
@@ -84,7 +84,7 @@
                     <a href="#contact" class="neumorph-btn px-6 py-3 font-medium hover:text-primary transition">Hire Me</a>
                 </div>
                 <div class="mt-8 flex flex-wrap items-center gap-6">
-                    <div class="flex space-x-4">
+                    <div class="flex">
                         @if($user->profile->social_links)
                         @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
                         @foreach($socialLinks as $platform => $url)
@@ -106,7 +106,7 @@
                     @endif
                 </div>
             </div>
-            <div class="relative section" style="transition-delay: 0.2s">
+            <div class="section" style="transition-delay: 0.2s">
                 <!-- Main Profile Card -->
                 <div class="neumorph-3d w-full max-w-md h-[450px] rounded-3xl overflow-hidden relative transform rotate-3 hover:rotate-0 transition-transform duration-500">
                     <!-- Background Pattern -->
@@ -137,7 +137,7 @@
                         </p>
 
                         <!-- Social Links -->
-                        <div class="flex space-x-4">
+                        <div class="flex">
                             @if($user->profile->social_links)
                             @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
                             @foreach(array_slice($socialLinks, 0, 4) as $platform => $url)
@@ -164,19 +164,19 @@
                 </div>
 
                 <!-- Floating Decorations -->
-                <div class="absolute -top-10 -right-10 w-24 h-24 neumorph rounded-full flex items-center justify-center animate-spin-slow">
+                <div class="hidden md:flex absolute -top-10 -right-10 w-24 h-24 neumorph rounded-full items-center justify-center animate-spin-slow">
                     <div class="w-16 h-16 neumorph-inset rounded-full flex items-center justify-center">
                         <div class="w-10 h-10 rounded-full bg-primary/10"></div>
                     </div>
                 </div>
 
-                <div class="absolute -bottom-10 -left-10 w-20 h-20 neumorph rounded-full flex items-center justify-center animate-float">
+                <div class="hidden md:flex  absolute -bottom-10 md:-left-10 w-20 h-20 neumorph rounded-full items-center justify-center animate-float">
                     <div class="w-12 h-12 neumorph-inset rounded-full flex items-center justify-center">
                         <i class="fas fa-code text-primary text-lg"></i>
                     </div>
                 </div>
 
-                <div class="absolute top-1/2 -right-16 w-16 h-16 neumorph rounded-2xl rotate-45 animate-float-2 flex items-center justify-center">
+                <div class="hidden md:flex  absolute top-1/2 -right-16 w-16 h-16 neumorph rounded-2xl rotate-45 animate-float-2 items-center justify-center">
                     <i class="fab fa-laravel text-primary text-xl"></i>
                 </div>
             </div>
@@ -184,7 +184,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-4 bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70">
+    <section id="about" class="min-w-screen py-20 px-4 bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section">About <span class="text-gradient">Me</span></h2>
             <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16 section">Get to know the person behind the code</p>
@@ -204,7 +204,7 @@
                             </div>
                             <div class="neumorph-btn p-4 rounded-xl">
                                 <h4 class="font-bold mb-2">Email:</h4>
-                                <p class="text-gray-600 dark:text-gray-400">{{ $user->email }}</p>
+                                <p class="text-gray-600 dark:text-gray-400  break-words">{{ $user->email }}</p>
                             </div>
                             @if($user->profile->phone)
                             <div class="neumorph-btn p-4 rounded-xl">
@@ -502,11 +502,11 @@
 
             <div class="grid md:grid-cols-2 gap-12">
                 <div class="section" style="transition-delay: 0.1s">
-                    <div class="neumorph-3d p-8 rounded-3xl h-full">
+                    <div class="neumorph-3d rounded-3xl h-full">
                         <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
                         <div class="space-y-6">
                             <div class="flex items-start">
-                                <div class="mr-4">
+                                <div class="">
                                     <div class="w-12 h-12 neumorph-btn rounded-full flex items-center justify-center text-primary">
                                         <i class="fas fa-envelope"></i>
                                     </div>
@@ -550,7 +550,7 @@
                         </div>
                         <div class="mt-8">
                             <h4 class="font-bold mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
+                            <div class="flex">
                                 @if($user->profile->social_links)
                                 @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
                                 @foreach($socialLinks as $platform => $url)

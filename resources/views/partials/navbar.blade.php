@@ -2,7 +2,7 @@
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <!-- Logo + Text -->
         <a href="#" class="flex items-center ">
-            <img src="assets/logo.svg" alt="Duwipangga Logo" class="h-10 w-auto filter invert-[58%] sepia-[13%] saturate-[740%] hue-rotate-[204deg]">
+            <img src="assets/logo.svg" alt="Duwipangga Logo" class="h-10 w-auto filter invert-[58%] sepia-[13%] saturate-[740%] hue-rotate-[204deg] ">
             <span class="text-2xl font-bold text-gradient">Duwipangga</span>
         </a>
 
