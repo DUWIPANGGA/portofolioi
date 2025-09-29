@@ -132,7 +132,7 @@
                         <p class="text-primary font-medium mb-4">Embedded & Full Stack Developer</p>
 
                         <!-- Short Bio -->
-                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        <p class="hidden md:flex text-gray-600 dark:text-gray-400 mb-6">
                             {{ Str::limit($user->profile->bio ?? 'Creating beautiful digital experiences with modern web technologies', 80) }}
                         </p>
 
