@@ -60,15 +60,16 @@ class EducationController extends Controller
         'institution' => 'required|string|max:255',
         'field_of_study' => 'nullable|string|max:255',
         'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date', // ✅ allow same date
+        'end_date' => 'required|date|after_or_equal:start_date',
         'order' => 'nullable|integer'
     ]);
-
+    
     // pastikan format konsisten YYYY-MM-DD
     $validated['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
     $validated['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
-
+    
     $education->update($validated);
+    // dd($validated);
 
     return redirect()->route('admin.educations.index')
         ->with('success', 'Education updated successfully.');
