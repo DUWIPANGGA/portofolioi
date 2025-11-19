@@ -248,7 +248,7 @@
                             @endforelse
                         </div>
 
-                        {{-- <div class="mt-8">
+                        <div class="mt-8">
                             <h4 class="font-bold mb-4">Education</h4>
                             <div class="space-y-4">
                                 @forelse($user->educations as $education)
@@ -266,7 +266,7 @@
                                 <p class="text-gray-600 dark:text-gray-400">No education information added yet.</p>
                                 @endforelse
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
