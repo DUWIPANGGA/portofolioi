@@ -78,5 +78,8 @@ public function profile()
     {
         return $this->hasOne(PortfolioStat::class);
     }
-    
+    public function certificates()
+{
+    return $this->hasMany(Certificate::class)->orderBy('order');
+}
 }

@@ -69,6 +69,25 @@
             </div>
         </div>
 
+        <!-- Certificates Card -->
+        <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden bg-info text-black">
+            <div class="p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-sm text-black opacity-90">Total Certificates</p>
+                        <h3 class="text-2xl font-bold">{{ $stats['certificates'] ?? 0 }}</h3>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-gray-500 bg-opacity-20 flex items-center justify-center text-black">
+                        <i class="fas fa-certificate text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 py-3 bg-info-dark bg-opacity-50 flex items-center justify-between text-black">
+                <a href="{{ route('admin.certificates.index') }}" class="text-sm text-black hover:underline opacity-90">View Details</a>
+                <i class="fas fa-arrow-right text-sm opacity-90"></i>
+            </div>
+        </div>
+
         <!-- Messages Card -->
         <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden bg-warning text-black">
             <div class="p-6">
@@ -84,25 +103,6 @@
             </div>
             <div class="px-6 py-3 bg-warning-dark bg-opacity-50 flex items-center justify-between text-black">
                 <a href="{{ route('admin.contact-messages.index') }}" class="text-sm text-black hover:underline opacity-90">View Details</a>
-                <i class="fas fa-arrow-right text-sm opacity-90"></i>
-            </div>
-        </div>
-
-        <!-- Subscribers Card -->
-        <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden bg-info text-black">
-            <div class="p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <p class="text-sm text-black opacity-90">Subscribers</p>
-                        <h3 class="text-2xl font-bold">{{ $stats['subscribers'] ?? 0 }}</h3>
-                    </div>
-                    <div class="w-12 h-12 rounded-full bg-gray-500 bg-opacity-20 flex items-center justify-center text-black">
-                        <i class="fas fa-rss text-xl"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="px-6 py-3 bg-info-dark bg-opacity-50 flex items-center justify-between">
-                <a href="{{ route('admin.subscribers.index') }}" class="text-sm text-black hover:underline opacity-90 ">View Details</a>
                 <i class="fas fa-arrow-right text-sm opacity-90"></i>
             </div>
         </div>
@@ -147,16 +147,16 @@
                     <span>Projects</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>
                 </a>
+                <a href="{{ route('admin.certificates.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
+                    <span>Certificates</span>
+                    <i class="fas fa-arrow-right text-sm text-gray-400"></i>
+                </a>
                 <a href="{{ route('admin.technologies.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
                     <span>Technologies</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>
                 </a>
                 <a href="{{ route('admin.skills.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
                     <span>Skills</span>
-                    <i class="fas fa-arrow-right text-sm text-gray-400"></i>
-                </a>
-                <a href="{{ route('admin.experience.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
-                    <span>Experience</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>
                 </a>
             </div>
@@ -190,7 +190,7 @@
     </div>
 
     <!-- Recent Activity Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <!-- Recent Projects -->
         <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden">
             <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
@@ -221,6 +221,44 @@
             </div>
         </div>
 
+        <!-- Recent Certificates -->
+        <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-certificate mr-2 text-primary"></i>
+                    <h3 class="text-lg font-semibold">Recent Certificates</h3>
+                </div>
+                <a href="{{ route('admin.certificates.index') }}" class="text-sm text-primary hover:underline">View All</a>
+            </div>
+            <div class="p-6">
+                @if(isset($recentCertificates) && $recentCertificates->count() > 0)
+                <div class="space-y-4">
+                    @foreach($recentCertificates as $certificate)
+                    <div class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-medium truncate">{{ $certificate->title }}</h4>
+                            <div class="flex items-center mt-1 space-x-2">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">{{ $certificate->issuer }}</span>
+                                <span class="px-2 py-1 rounded-full text-xs font-medium {{ $certificate->status_badge }}">
+                                    {{ ucfirst($certificate->status) }}
+                                </span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                Issued: {{ $certificate->issue_date->format('M Y') }}
+                            </p>
+                        </div>
+                        <a href="{{ route('admin.certificates.edit', $certificate->id) }}" class="text-primary hover:text-primary-dark ml-2">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                @else
+                <p class="text-gray-500 dark:text-gray-400 text-center py-4">No recent certificates</p>
+                @endif
+            </div>
+        </div>
+
         <!-- Recent Messages -->
         <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden">
             <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
@@ -236,12 +274,12 @@
                     @foreach($recentMessages as $message)
                     <a href="{{ route('admin.contact-messages.show', $message->id) }}" class="block p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
                         <div class="flex justify-between items-start">
-                            <div>
-                                <h4 class="font-medium">{{ $message->name }}</h4>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium truncate">{{ $message->name }}</h4>
                                 <p class="text-sm text-gray-500 dark:text-gray-400 truncate">{{ Str::limit($message->message, 50) }}</p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ $message->email }}</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 truncate">{{ $message->email }}</p>
                             </div>
-                            <span class="text-xs text-gray-500 dark:text-gray-400">{{ $message->created_at->diffForHumans() }}</span>
+                            <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap ml-2">{{ $message->created_at->diffForHumans() }}</span>
                         </div>
                     </a>
                     @endforeach

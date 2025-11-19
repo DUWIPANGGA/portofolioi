@@ -38,6 +38,9 @@ class PortfolioController extends Controller
             'educations' => function($query) {
                 $query->orderBy('order');
             },
+            'certificates' => function($query) {
+                $query->orderBy('order')->active();
+            },
             'themeSettings']);
 
         return view('main', compact('user'));

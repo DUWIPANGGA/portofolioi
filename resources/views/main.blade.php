@@ -358,7 +358,152 @@
             @endforeach
         </div>
     </div>
+<!-- Certificates Section -->
+<section id="certificates" class="py-20 px-4 bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section">
+            My <span class="text-gradient">Certifications</span>
+        </h2>
+        <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16 section">
+            Certificates I’ve earned from various competitions, activities, and training programs.
+        </p>
 
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @forelse($user->certificates as $certificate)
+            <div class="section">
+                <div class="neumorph-3d rounded-3xl overflow-hidden neumorph-hover h-full flex flex-col">
+                    <!-- Certificate Image -->
+                    <div class="relative h-80 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10">
+                        @if($certificate->image)
+                        <img src="{{ asset('storage/' . $certificate->image) }}" 
+                             alt="{{ $certificate->title }}" 
+                             class="w-full h-full object-cover">
+                        @else
+                        <div class="w-full h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-certificate text-6xl text-primary opacity-50 mb-2"></i>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm">No Image</p>
+                            </div>
+                        </div>
+                        @endif
+                        
+                        <!-- Status Badge -->
+                        {{-- <div class="absolute top-4 right-4">
+                            <span class="text-xs px-3 py-1 neumorph-btn rounded-full {{ $certificate->status_badge }}">
+                                {{ ucfirst($certificate->status) }}
+                            </span>
+                        </div> --}}
+                        
+                        <!-- Active Badge -->
+                        {{-- @if($certificate->is_active)
+                        <div class="absolute top-4 left-4">
+                            <span class="text-xs px-3 py-1 neumorph-btn rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                                Active
+                            </span>
+                        </div>
+                        @endif --}}
+                    </div>
+
+                    <!-- Certificate Content -->
+                    <div class="p-6 flex-grow h-40">
+                        <h3 class="text-xl font-bold mb-2">{{ $certificate->title }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">{{ $certificate->issuer }}</p>
+                        
+                        <!-- Dates -->
+                        {{-- <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                            <span>Issued: {{ $certificate->issue_date->format('M Y') }}</span>
+                            @if($certificate->expiry_date)
+                            <span class="{{ $certificate->is_expi   red ? 'text-red-500' : 'text-green-500' }}">
+                                {{ $certificate->expiry_date->format('M Y') }}
+                            </span>
+                            @endif
+                        </div> --}}
+
+                        <!-- Credential ID -->
+                        {{-- @if($certificate->credential_id)
+                        <div class="mb-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>Credential ID:</strong> {{ $certificate->credential_id }}
+                            </p>
+                        </div>
+                        @endif --}}
+
+                        <!-- Description -->
+                        @if($certificate->description)
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-3">
+                            {{ $certificate->description }}
+                        </p>
+                        @endif
+
+                        <!-- Duration Info -->
+                        <div class="mb-4">
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-clock mr-1"></i>
+                                {{ $certificate->duration }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Certificate Actions -->
+                    <div class="p-6 pt-0 flex justify-between items-center">
+                        @if($certificate->credential_url)
+                        <a href="{{ $certificate->credential_url }}" 
+                           target="_blank" 
+                           class="neumorph-btn px-4 py-2 text-sm font-medium inline-flex items-center hover:text-primary transition">
+                            Verify <i class="fas fa-external-link-alt ml-2"></i>
+                        </a>
+                        @endif
+                        
+                        {{-- <button type="button" 
+                                onclick="showCertificateDetails({{ $certificate->id }})"
+                                class="text-sm text-primary hover:underline flex items-center">
+                            View Details <i class="fas fa-arrow-right ml-1"></i>
+                        </button> --}}
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div class="col-span-3 text-center py-12">
+                <div class="neumorph-3d p-8 rounded-3xl inline-block">
+                    <i class="fas fa-certificate text-6xl text-gray-400 dark:text-gray-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Certificates Yet</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Certificates will be displayed here once added.</p>
+                </div>
+            </div>
+            @endforelse
+        </div>
+
+        <!-- View All Button -->
+        {{-- @if($user->certificates->count() > 0)
+        <div class="text-center mt-12 section">
+            <a href="{{ route('portfolio.certificates', $user->name) }}" 
+               class="neumorph-btn px-8 py-3 font-medium hover:text-primary transition inline-flex items-center">
+                View All Certificates <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        @endif --}}
+    </div>
+</section>
+
+<!-- Certificate Details Modal -->
+<div id="certificateModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="neumorph-3d rounded-3xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="p-6">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Certificate Details</h3>
+                <button onclick="closeCertificateModal()" class="neumorph-btn w-10 h-10 rounded-full flex items-center justify-center hover:text-primary transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div id="certificateModalContent">
+                <!-- Content will be loaded via JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Projects Section -->
     <section id="projects" class="py-20 px-4 bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70">
         <div class="max-w-6xl mx-auto">
@@ -500,9 +645,9 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 section">Let's <span class="text-gradient">Connect</span></h2>
             <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-16 section">Get in touch for project inquiries or collaboration opportunities</p>
 
-            <div class="grid md:grid-cols-2 gap-12">
+            <div class="grid md:grid-cols-2  gap-12">
                 <div class="section" style="transition-delay: 0.1s">
-                    <div class="neumorph-3d rounded-3xl h-full">
+                    <div class="neumorph-3d rounded-3xl h-full p-8">
                         <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -873,7 +1018,20 @@
                 });
             });
         }
+function showCertificateDetails(certificateId) {
+    // In a real application, you would fetch the certificate details via AJAX
+    // For now, we'll redirect to the certificate detail page
+    window.location.href = `{{ url('/' . $user->name . '/certificates') }}/${certificateId}`;
+}
 
+function closeCertificateModal() {
+    document.getElementById('certificateModal').classList.add('hidden');
+}
+document.getElementById('certificateModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeCertificateModal();
+    }
+});
     </script>
 </body>
 </html>

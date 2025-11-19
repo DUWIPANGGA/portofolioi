@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CustomSectionController;
     use App\Http\Controllers\PostController;
     use App\Http\Controllers\UserController;
@@ -74,7 +75,9 @@ use App\Http\Controllers\CustomSectionController;
             Route::resource('seo-metas', SeoMetaController::class);
             Route::resource('page-views', PageViewController::class);
             Route::resource('development_processes', DevelopmentProcessController::class);
-
+    Route::resource('certificates', CertificateController::class);
+    Route::post('/certificates/{certificate}/toggle-active', [CertificateController::class, 'toggleActive'])->name('certificates.toggle-active');
+    Route::post('/certificates/update-order', [CertificateController::class, 'updateOrder'])->name('certificates.update-order');
         });
         // Theme settings routes
     });

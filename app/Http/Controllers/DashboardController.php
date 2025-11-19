@@ -8,6 +8,7 @@ use App\Models\Testimonial;
 use App\Models\ContactMessage;
 use App\Models\Post;
 use App\Models\Subscriber;
+use App\Models\Certificate;
 
 class DashboardController extends Controller
 {
@@ -20,6 +21,7 @@ class DashboardController extends Controller
             'messages' => ContactMessage::where('is_read', false)->count(),
             'posts' => Post::published()->count(),
             'subscribers' => Subscriber::active()->count(),
+            'certificates' => Certificate::count(),
         ];
 
         $recentProjects = Project::with('technologies')
@@ -36,6 +38,16 @@ class DashboardController extends Controller
             ->take(3)
             ->get();
 
-        return view('admin.dashboard', compact('stats', 'recentProjects', 'recentMessages', 'recentPosts'));
+        $recentCertificates = Certificate::latest()
+            ->take(5)
+            ->get();
+
+        return view('admin.dashboard', compact(
+            'stats', 
+            'recentProjects', 
+            'recentMessages', 
+            'recentPosts',
+            'recentCertificates'
+        ));
     }
 }

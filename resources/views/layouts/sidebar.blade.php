@@ -46,6 +46,11 @@
                 <i class="fas fa-project-diagram mr-3"></i>
                 Projects
             </a>
+            <!-- TAMBAHKAN CERTIFICATES DI SINI -->
+            <a href="{{ route('admin.certificates.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
+                <i class="fas fa-certificate mr-3"></i>
+                Certificates
+            </a>
             <a href="{{ route('admin.technologies.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
                 <i class="fas fa-code mr-3"></i>
                 Technologies
@@ -196,6 +201,11 @@
             <a href="{{ route('admin.projects.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
                 <i class="fas fa-project-diagram mr-3"></i>
                 Projects
+            </a>
+            <!-- TAMBAHKAN CERTIFICATES DI MOBILE SIDEBAR JUGA -->
+            <a href="{{ route('admin.certificates.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
+                <i class="fas fa-certificate mr-3"></i>
+                Certificates
             </a>
             <a href="{{ route('admin.technologies.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
                 <i class="fas fa-code mr-3"></i>
