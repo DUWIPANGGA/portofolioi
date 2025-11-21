@@ -209,8 +209,9 @@ class CertificateController extends Controller
      */
     private function checkOwnership(Certificate $certificate)
     {
-        if ($certificate->user_id !== Auth::id()) {
+        if ($certificate->user_id != Auth::id()) {
             abort(403, 'Unauthorized action.');
+            dd('lmaooo');
         }
     }
 }

@@ -46,8 +46,7 @@ use App\Http\Controllers\CustomSectionController;
     });
     
     Route::middleware('auth')->group(function () {
-        Route::resource('sertifikat', CertificateController::class);
-            Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile{', [ProfileController::class, 'update'])->name('profile.update');
         Route::patch('pages/{page}/toggle-status', [PageController::class, 'toggleStatus'])->name('admin.pages.toggle-status');
@@ -76,10 +75,11 @@ use App\Http\Controllers\CustomSectionController;
             Route::resource('seo-metas', SeoMetaController::class);
             Route::resource('page-views', PageViewController::class);
             Route::resource('development_processes', DevelopmentProcessController::class);
-    Route::post('/sertifikat/{certificate}/toggle-active', [CertificateController::class, 'toggleActive'])->name('certificates.toggle-active');
-    Route::post('/sertifikat/update-order', [CertificateController::class, 'updateOrder'])->name('certificates.update-order');
+            Route::resource('sertifikat', CertificateController::class);
+            Route::post('/sertifikat/{certificate}/toggle-active', [CertificateController::class, 'toggleActive'])->name('certificates.toggle-active');
+            Route::post('/sertifikat/update-order', [CertificateController::class, 'updateOrder'])->name('certificates.update-order');
         });
         // Theme settings routes
     });
-
+    
     require __DIR__.'/auth.php';
