@@ -9,12 +9,12 @@
         <div class="flex justify-between items-center mb-6">
             <h3 class="text-xl font-semibold">Certificate Details</h3>
             <div class="flex space-x-2">
-                <a href="{{ route('admin.certificates.edit', $certificate->id) }}" 
+                <a href="{{ route('admin.sertifikat.edit', $certificate->id) }}" 
                    class="neumorph-btn dark:neumorph-btn-dark w-8 h-8 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition"
                    title="Edit">
                     <i class="fas fa-edit text-sm"></i>
                 </a>
-                <form action="{{ route('admin.certificates.destroy', $certificate->id) }}" method="POST" class="inline">
+                <form action="{{ route('admin.sertifikat.destroy', $certificate->id) }}" method="POST" class="inline">
                     @csrf
                     @method('DELETE')
                     <button type="submit" 
@@ -127,7 +127,7 @@
         </div>
 
         <div class="mt-8">
-            <a href="{{ route('admin.certificates.index') }}"
+            <a href="{{ route('admin.sertifikat.index') }}"
                class="neumorph-btn dark:neumorph-btn-dark px-6 py-2 rounded-xl">
                 Back to Certificates
             </a>

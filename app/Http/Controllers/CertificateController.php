@@ -49,7 +49,7 @@ class CertificateController extends Controller
                             ->paginate(12)
                             ->withQueryString();
 
-        return view('admin.certificates.index', compact('certificates'));
+        return view('admin.sertifikat.index', compact('certificates'));
     }
 
     /**
@@ -57,7 +57,7 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        return view('admin.certificates.create');
+        return view('admin.sertifikat.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class CertificateController extends Controller
 
         Certificate::create($certificateData);
 
-        return redirect()->route('admin.certificates.index')
+        return redirect()->route('admin.sertifikat.index')
                         ->with('success', 'Certificate created successfully.');
     }
 
@@ -98,7 +98,7 @@ class CertificateController extends Controller
     public function show(Certificate $certificate)
     {
         $this->checkOwnership($certificate);
-        return view('admin.certificates.show', compact('certificate'));
+        return view('admin.sertifikat.show', compact('certificate'));
     }
 
     /**
@@ -107,7 +107,7 @@ class CertificateController extends Controller
     public function edit(Certificate $certificate)
     {
         $this->checkOwnership($certificate);
-        return view('admin.certificates.edit', compact('certificate'));
+        return view('admin.sertifikat.edit', compact('certificate'));
     }
 
     /**
@@ -144,7 +144,7 @@ class CertificateController extends Controller
 
         $certificate->update($updateData);
 
-        return redirect()->route('admin.certificates.index')
+        return redirect()->route('admin.sertifikat.index')
                         ->with('success', 'Certificate updated successfully.');
     }
 
@@ -162,7 +162,7 @@ class CertificateController extends Controller
 
         $certificate->delete();
 
-        return redirect()->route('admin.certificates.index')
+        return redirect()->route('admin.sertifikat.index')
                         ->with('success', 'Certificate deleted successfully.');
     }
 

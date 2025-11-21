@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="px-6 py-3 bg-info-dark bg-opacity-50 flex items-center justify-between text-black">
-                <a href="{{ route('admin.certificates.index') }}" class="text-sm text-black hover:underline opacity-90">View Details</a>
+                <a href="{{ route('admin.sertifikat.index') }}" class="text-sm text-black hover:underline opacity-90">View Details</a>
                 <i class="fas fa-arrow-right text-sm opacity-90"></i>
             </div>
         </div>
@@ -147,7 +147,7 @@
                     <span>Projects</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>
                 </a>
-                <a href="{{ route('admin.certificates.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
+                <a href="{{ route('admin.sertifikat.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
                     <span>Certificates</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>
                 </a>
@@ -228,7 +228,7 @@
                     <i class="fas fa-certificate mr-2 text-primary"></i>
                     <h3 class="text-lg font-semibold">Recent Certificates</h3>
                 </div>
-                <a href="{{ route('admin.certificates.index') }}" class="text-sm text-primary hover:underline">View All</a>
+                <a href="{{ route('admin.sertifikat.index') }}" class="text-sm text-primary hover:underline">View All</a>
             </div>
             <div class="p-6">
                 @if(isset($recentCertificates) && $recentCertificates->count() > 0)
@@ -247,7 +247,7 @@
                                 Issued: {{ $certificate->issue_date->format('M Y') }}
                             </p>
                         </div>
-                        <a href="{{ route('admin.certificates.edit', $certificate->id) }}" class="text-primary hover:text-primary-dark ml-2">
+                        <a href="{{ route('admin.sertifikat.edit', $certificate->id) }}" class="text-primary hover:text-primary-dark ml-2">
                             <i class="fas fa-edit"></i>
                         </a>
                     </div>

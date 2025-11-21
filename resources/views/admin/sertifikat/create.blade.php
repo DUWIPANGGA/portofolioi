@@ -8,7 +8,7 @@
     <div class="neumorph-3d dark:neumorph-3d-dark p-6 max-w-3xl mx-auto">
         <h3 class="text-xl font-semibold mb-6">Add New Certificate</h3>
 
-        <form action="{{ route('admin.certificates.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.sertifikat.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -119,7 +119,7 @@
             </div>
 
             <div class="flex justify-end space-x-4 mt-8">
-                <a href="{{ route('admin.certificates.index') }}" 
+                <a href="{{ route('admin.sertifikat.index') }}" 
                    class="neumorph-btn dark:neumorph-btn-dark px-6 py-2 rounded-xl">
                     Cancel
                 </a>
