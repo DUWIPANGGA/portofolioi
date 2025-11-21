@@ -75,9 +75,9 @@ use App\Http\Controllers\CustomSectionController;
             Route::resource('seo-metas', SeoMetaController::class);
             Route::resource('page-views', PageViewController::class);
             Route::resource('development_processes', DevelopmentProcessController::class);
-    Route::resource('certificates', CertificateController::class);
-    Route::post('/certificates/{certificate}/toggle-active', [CertificateController::class, 'toggleActive'])->name('certificates.toggle-active');
-    Route::post('/certificates/update-order', [CertificateController::class, 'updateOrder'])->name('certificates.update-order');
+    Route::resource('sertifikat', CertificateController::class);
+    Route::post('/sertifikat/{certificate}/toggle-active', [CertificateController::class, 'toggleActive'])->name('certificates.toggle-active');
+    Route::post('/sertifikat/update-order', [CertificateController::class, 'updateOrder'])->name('certificates.update-order');
         });
         // Theme settings routes
     });
