@@ -95,14 +95,15 @@
                             <!-- Actions -->
                             <div class="flex justify-between items-center pt-3 border-t border-gray-200 dark:border-gray-700">
                                 <div class="flex space-x-2">
-                                    <a href="{{ route('admin.sertifikat.show', $certificate->id) }}" 
+                                    <a href="{{ route('admin.sertifikat.show', $certificate) }}" 
                                        class="neumorph-btn dark:neumorph-btn-dark w-8 h-8 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition"
                                        title="View">
                                         <i class="fas fa-eye text-xs"></i>
                                     </a>
-                                    <a href="{{ route('admin.sertifikat.edit', $certificate->id) }}" 
+                                    <a href="{{ route('admin.sertifikat.edit', $certificate) }}" 
                                        class="neumorph-btn dark:neumorph-btn-dark w-8 h-8 rounded-full flex items-center justify-center text-blue-500 hover:bg-blue-500 hover:text-white transition"
                                        title="Edit">
+                                       {{-- {{ $certificate->id }} --}}
                                         <i class="fas fa-edit text-xs"></i>
                                     </a>
                                 </div>
