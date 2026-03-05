@@ -269,6 +269,10 @@
 }
 
 /* Animasi scrolling */
+@-webkit-keyframes skillScroll {
+    0% { -webkit-transform: translateX(0); transform: translateX(0); }
+    100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+}
 @keyframes skillScroll {
     0% { 
         transform: translateX(0); 
@@ -276,6 +280,11 @@
     100% { 
         transform: translateX(-50%); 
     }
+}
+
+@-webkit-keyframes skillScrollRight {
+    0% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    100% { -webkit-transform: translateX(0); transform: translateX(0); }
 }
 @keyframes skillScrollRight {
     0% { 
@@ -422,6 +431,13 @@
 /* Dashed line that scrolls upward infinitely */
 .timeline-dash-line {
     height: 200%;           /* 2× height so we can loop */
+    background-image: -webkit-repeating-linear-gradient(
+        bottom,
+        #6c5ce7 0px,
+        #6c5ce7 12px,
+        rgba(108, 92, 231, 0) 12px,
+        rgba(108, 92, 231, 0) 24px
+    );
     background-image: repeating-linear-gradient(
         to bottom,
         #6c5ce7 0px,
@@ -429,6 +445,7 @@
         rgba(108, 92, 231, 0) 12px,
         rgba(108, 92, 231, 0) 24px
     );
+    -webkit-animation: dashScrollUp 2.4s linear infinite;
     animation: dashScrollUp 2.4s linear infinite;
     opacity: 0.55;
     /* Linux Hardware Acceleration Fix */
@@ -437,6 +454,13 @@
     transform: translateZ(0);
 }
 .dark .timeline-dash-line {
+    background-image: -webkit-repeating-linear-gradient(
+        bottom,
+        #a29bfe 0px,
+        #a29bfe 12px,
+        rgba(162, 155, 254, 0) 12px,
+        rgba(162, 155, 254, 0) 24px
+    );
     background-image: repeating-linear-gradient(
         to bottom,
         #a29bfe 0px,
@@ -445,6 +469,11 @@
         rgba(162, 155, 254, 0) 24px
     );
     opacity: 0.45;
+}
+
+@-webkit-keyframes dashScrollUp {
+    0%   { -webkit-transform: translateY(0); transform: translateY(0); }
+    100% { -webkit-transform: translateY(-50%); transform: translateY(-50%); }
 }
 @keyframes dashScrollUp {
     0%   { transform: translateY(0); }
@@ -455,12 +484,19 @@
 .tl-slide-left,
 .tl-slide-right {
     opacity: 0;
+    -webkit-transition: opacity 0.6s ease, -webkit-transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     /* Linux Hardware Acceleration Fix */
     will-change: opacity, transform;
 }
-.tl-slide-left  { transform: translateX(-40px) translateZ(0); }
-.tl-slide-right { transform: translateX(40px) translateZ(0);  }
+.tl-slide-left  { 
+    -webkit-transform: translateX(-40px) translateZ(0);
+    transform: translateX(-40px) translateZ(0); 
+}
+.tl-slide-right { 
+    -webkit-transform: translateX(40px) translateZ(0);
+    transform: translateX(40px) translateZ(0);  
+}
 
 /* On mobile, always show (no zig-zag, no slide) */
 @media (max-width: 767px) {
@@ -475,6 +511,7 @@
 .timeline-item.show .tl-slide-left,
 .timeline-item.show .tl-slide-right {
     opacity: 1;
+    -webkit-transform: translateX(0);
     transform: translateX(0);
 }
 
@@ -483,6 +520,13 @@
    ══════════════════════════════════ */
 .edu-dash-line {
     height: 200%;
+    background-image: -webkit-repeating-linear-gradient(
+        bottom,
+        #34d399 0px,
+        #34d399 12px,
+        rgba(52, 211, 153, 0) 12px,
+        rgba(52, 211, 153, 0) 24px
+    );
     background-image: repeating-linear-gradient(
         to bottom,
         #34d399 0px,
@@ -490,6 +534,7 @@
         rgba(52, 211, 153, 0) 12px,
         rgba(52, 211, 153, 0) 24px
     );
+    -webkit-animation: dashScrollUp 3s linear infinite;
     animation: dashScrollUp 3s linear infinite;
     opacity: 0.50;
     /* Linux Hardware Acceleration Fix */
@@ -498,6 +543,13 @@
     transform: translateZ(0);
 }
 .dark .edu-dash-line {
+    background-image: -webkit-repeating-linear-gradient(
+        bottom,
+        #6ee7b7 0px,
+        #6ee7b7 12px,
+        rgba(110, 231, 183, 0) 12px,
+        rgba(110, 231, 183, 0) 24px
+    );
     background-image: repeating-linear-gradient(
         to bottom,
         #6ee7b7 0px,
@@ -511,12 +563,19 @@
 .edu-slide-left,
 .edu-slide-right {
     opacity: 0;
+    -webkit-transition: opacity 0.6s ease, -webkit-transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
     /* Linux Hardware Acceleration Fix */
     will-change: opacity, transform;
 }
-.edu-slide-left  { transform: translateX(-40px) translateZ(0); }
-.edu-slide-right { transform: translateX(40px) translateZ(0);  }
+.edu-slide-left  { 
+    -webkit-transform: translateX(-40px) translateZ(0);
+    transform: translateX(-40px) translateZ(0); 
+}
+.edu-slide-right { 
+    -webkit-transform: translateX(40px) translateZ(0);
+    transform: translateX(40px) translateZ(0);  
+}
 
 @media (max-width: 767px) {
     .edu-slide-left,
@@ -529,5 +588,6 @@
 .edu-timeline-item.show .edu-slide-left,
 .edu-timeline-item.show .edu-slide-right {
     opacity: 1;
+    -webkit-transform: translateX(0);
     transform: translateX(0);
 }
