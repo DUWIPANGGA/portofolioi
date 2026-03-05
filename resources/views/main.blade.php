@@ -278,7 +278,7 @@
                     <!-- Timeline container: single col on mobile, zig-zag on md+ -->
                     <div class="relative">
                         <!-- Center line — animated dashed scrolling upward (md+ only) -->
-                        <div class="hidden md:block absolute left-1/2 top-0 h-full -translate-x-1/2 overflow-hidden" style="width:3px;">
+                        <div class="hidden md:block absolute left-1/2 inset-y-0 -translate-x-1/2 overflow-hidden" style="width:3px;">
                             <div class="timeline-dash-line w-full"></div>
                         </div>
 
@@ -343,7 +343,7 @@
 
                     <div class="relative">
                         <!-- Dashed scrolling line (md+) -->
-                        <div class="hidden md:block absolute left-1/2 top-0 h-full -translate-x-1/2 overflow-hidden" style="width:3px;">
+                        <div class="hidden md:block absolute left-1/2 inset-y-0 -translate-x-1/2 overflow-hidden" style="width:3px;">
                             <div class="edu-dash-line w-full"></div>
                         </div>
 
