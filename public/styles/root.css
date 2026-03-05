@@ -15,3 +15,79 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+/* default hidden */
+.timeline-item{
+opacity:0;
+}
+
+/* kiri */
+.timeline-left{
+transform:translateX(-80px);
+}
+
+/* kanan */
+.timeline-right{
+transform:translateX(80px);
+}
+
+/* animasi aktif */
+.timeline-item.show{
+opacity:1;
+transform:translateX(0);
+transition:all .8s ease;
+}
+
+/* titik */
+.timeline-dot{
+opacity:0;
+transform:translate(-50%,20px);
+transition:all .6s ease;
+}
+
+.timeline-item.show .timeline-dot{
+opacity:1;
+transform:translate(-50%,0);
+}
+
+/* hover card */
+.timeline-card{
+transition:all .35s ease;
+}
+
+.timeline-card:hover{
+transform:translateY(-6px);
+}
+.timeline-line{
+width:3px;
+background: repeating-linear-gradient(
+to bottom,
+#cbd5e1,
+#cbd5e1 8px,
+transparent 8px,
+transparent 16px
+);
+
+animation: timelineMove 1s linear infinite;
+}
+
+/* dark mode */
+.dark .timeline-line{
+background: repeating-linear-gradient(
+to bottom,
+#4b5563,
+#4b5563 8px,
+transparent 8px,
+transparent 16px
+);
+animation: timelineMove 1s linear infinite;
+}
+
+@keyframes timelineMove{
+from{
+background-position:0 0;
+}
+to{
+background-position:0 -16px;
+}
+}

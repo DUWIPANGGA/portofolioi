@@ -54,6 +54,8 @@ public function update(Request $request, Profile $profile)
 
     $request->validate([
         'title'         => 'nullable|string|max:255',
+        'tagline'       => 'nullable|string|max:255',
+        'hero_bio'      => 'nullable|string|max:500',
         'bio'           => 'nullable|string',
         'avatar'        => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'phone'         => 'nullable|string|max:20',

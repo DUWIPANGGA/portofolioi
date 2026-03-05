@@ -17,7 +17,7 @@ class PortfolioController extends Controller
 {
     public function index()
     {
-        $user = User::find(4);
+        $user = User::firstOrFail();
         $user->load([
             'profile',
             'skills' => function($query) {

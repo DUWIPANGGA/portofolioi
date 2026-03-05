@@ -30,15 +30,38 @@
                     <!-- Title -->
                     <div>
                         <label for="title" class="block text-sm font-medium mb-2">Professional Title</label>
+                        <p class="text-xs text-gray-500 mb-2">Judul pekerjaan lengkap, ditampilkan di halaman About.</p>
                         <input type="text" id="title" name="title" value="{{ old('title', $user->profile->title ?? '') }}" class="w-full input-field dark:input-field px-4 py-2">
                         @error('title')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
+                    <!-- Tagline -->
+                    <div>
+                        <label for="tagline" class="block text-sm font-medium mb-2">Tagline <span class="text-primary">(Hero Section)</span></label>
+                        <p class="text-xs text-gray-500 mb-2">Kalimat pendek yang muncul di bawah nama di halaman utama. Contoh: <em>Embedded & Full Stack Developer</em></p>
+                        <input type="text" id="tagline" name="tagline" value="{{ old('tagline', $user->profile->tagline ?? '') }}" placeholder="e.g. Embedded & Full Stack Developer" class="w-full input-field dark:input-field px-4 py-2">
+                        @error('tagline')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Hero Bio -->
+                    <div>
+                        <label for="hero_bio" class="block text-sm font-medium mb-2">Hero Bio <span class="text-primary">(Hero Section)</span></label>
+                        <p class="text-xs text-gray-500 mb-2">Kalimat pendek (1-2 kalimat) yang muncul di bawah tagline di halaman utama. Maks 500 karakter.</p>
+                        <textarea id="hero_bio" name="hero_bio" rows="3" maxlength="500" placeholder="e.g. I create beautiful web and embedded solutions..." class="w-full input-field dark:input-field px-4 py-2">{{ old('hero_bio', $profile->hero_bio ?? '') }}</textarea>
+                        <p class="text-xs text-gray-400 mt-1 text-right" id="hero_bio_count"></p>
+                        @error('hero_bio')
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     <!-- Bio -->
                     <div>
-                        <label for="bio" class="block text-sm font-medium mb-2">Bio</label>
+                        <label for="bio" class="block text-sm font-medium mb-2">Bio <span class="text-primary">(About Section)</span></label>
+                        <p class="text-xs text-gray-500 mb-2">Deskripsi panjang tentang diri Anda, ditampilkan di section About dengan desain elegan.</p>
                         <textarea id="bio" name="bio" rows="5" class="w-full input-field dark:input-field px-4 py-2">{{ old('bio', $profile->bio ?? '') }}</textarea>
                         @error('bio')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -130,4 +153,18 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    const heroBioEl = document.getElementById('hero_bio');
+    const counterEl = document.getElementById('hero_bio_count');
+    function updateCount() {
+        const len = heroBioEl.value.length;
+        counterEl.textContent = len + ' / 500';
+        counterEl.style.color = len > 450 ? '#ef4444' : '';
+    }
+    heroBioEl.addEventListener('input', updateCount);
+    updateCount(); // initial
+</script>
+@endpush
 @endsection

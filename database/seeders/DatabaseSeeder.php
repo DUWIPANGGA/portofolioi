@@ -15,9 +15,24 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create default user if not exists
+        if (User::where('email', 'aryad2232@gmail.com')->doesntExist()) {
+            User::factory()->create([
+                'name' => 'dimas arya duwipangga',
+                'email' => 'aryad2232@gmail.com',
+                'role' => 'admin',
+            ]);
+        }
+
+        $this->call([
+            TechnologySeeder::class,
+            ProjectSeeder::class,
+            SkillSeeder::class,
+            ExperienceSeeder::class,
+            EducationSeeder::class,
+            ServiceSeeder::class,
+            TestimonialSeeder::class,
+            CertificateSeeder::class,
         ]);
     }
 }

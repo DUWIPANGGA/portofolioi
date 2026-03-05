@@ -43,6 +43,28 @@
                     @enderror
                 </div>
 
+                <!-- GPA / IPK -->
+                <div>
+                    <label for="gpa" class="block mb-2">IPK / GPA <span class="text-gray-400 text-xs font-normal">(opsional)</span></label>
+                    <input type="number" id="gpa" name="gpa" value="{{ old('gpa', $education->gpa) }}"
+                           step="0.01" min="0" max="100"
+                           class="w-full input-field dark:input-field" placeholder="e.g. 3.85">
+                    @error('gpa')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- GPA Max -->
+                <div>
+                    <label for="gpa_max" class="block mb-2">Skala Maks <span class="text-gray-400 text-xs font-normal">(default 4.00)</span></label>
+                    <input type="number" id="gpa_max" name="gpa_max" value="{{ old('gpa_max', $education->gpa_max ?? '4.00') }}"
+                           step="0.01" min="0" max="100"
+                           class="w-full input-field dark:input-field" placeholder="4.00 atau 100">
+                    @error('gpa_max')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <!-- Start Date -->
                 <div>
                     <label for="start_date" class="block mb-2">Start Date*</label>

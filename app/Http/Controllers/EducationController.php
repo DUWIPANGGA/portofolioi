@@ -23,12 +23,14 @@ class EducationController extends Controller
     public function store(Request $request)
 {
     $validated = $request->validate([
-        'degree' => 'required|string|max:255',
-        'institution' => 'required|string|max:255',
-        'field_of_study' => 'nullable|string|max:255',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date', // ✅ allow same date
-        'order' => 'nullable|integer'
+        'degree'        => 'required|string|max:255',
+        'institution'   => 'required|string|max:255',
+        'field_of_study'=> 'nullable|string|max:255',
+        'gpa'           => 'nullable|numeric|min:0|max:100',
+        'gpa_max'       => 'nullable|numeric|min:0|max:100',
+        'start_date'    => 'required|date',
+        'end_date'      => 'required|date|after_or_equal:start_date',
+        'order'         => 'nullable|integer'
     ]);
 
     // pastiin format date ke YYYY-MM-DD
@@ -56,12 +58,14 @@ class EducationController extends Controller
     public function update(Request $request, Education $education)
 {
     $validated = $request->validate([
-        'degree' => 'required|string|max:255',
-        'institution' => 'required|string|max:255',
-        'field_of_study' => 'nullable|string|max:255',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after_or_equal:start_date',
-        'order' => 'nullable|integer'
+        'degree'        => 'required|string|max:255',
+        'institution'   => 'required|string|max:255',
+        'field_of_study'=> 'nullable|string|max:255',
+        'gpa'           => 'nullable|numeric|min:0|max:100',
+        'gpa_max'       => 'nullable|numeric|min:0|max:100',
+        'start_date'    => 'required|date',
+        'end_date'      => 'required|date|after_or_equal:start_date',
+        'order'         => 'nullable|integer'
     ]);
     
     // pastikan format konsisten YYYY-MM-DD

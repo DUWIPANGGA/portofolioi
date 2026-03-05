@@ -15,6 +15,8 @@ class Education extends Model
         'degree',
         'institution',
         'field_of_study',
+        'gpa',
+        'gpa_max',
         'order',
         'start_date',
         'end_date'

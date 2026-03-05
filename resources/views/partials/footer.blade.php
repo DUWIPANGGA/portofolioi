@@ -7,7 +7,7 @@
                 <p class="text-gray-600 dark:text-gray-400 mb-4">Embedded & Full Stack Developer</p>
 
                 <div class="flex space-x-4">
-                    @if($user->profile->social_links)
+                    @if(optional($user->profile)->social_links)
                     @php $socialLinks = json_decode($user->profile->social_links, true); @endphp
                     @foreach($socialLinks as $platform => $url)
                     @if($url)
@@ -63,7 +63,6 @@
 
         <div class="border-t border-gray-200 dark:border-gray-700 mt-12 pt-8 text-center">
             <p class="text-gray-600 dark:text-gray-400">&copy; 2025 {{ $user->name }}. All rights reserved.</p>
-            <p class="text-gray-500 dark:text-gray-500 text-sm mt-2">Made with <i class="fas fa-heart text-red-500"></i> and <i class="fas fa-coffee text-yellow-600"></i> in Indramayu</p>
         </div>
     </div>
 </footer>
