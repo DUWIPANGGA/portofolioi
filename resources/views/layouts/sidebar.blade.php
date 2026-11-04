@@ -46,6 +46,11 @@
                 <i class="fas fa-project-diagram mr-3"></i>
                 Projects
             </a>
+            <!-- Achievements & Speaker -->
+            <a href="{{ route('admin.achievements.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition {{ request()->routeIs('admin.achievements.*') ? 'text-primary font-bold' : '' }}">
+                <i class="fas fa-trophy mr-3"></i>
+                Achievements & Speaker
+            </a>
             <!-- TAMBAHKAN CERTIFICATES DI SINI -->
             <a href="{{ route('admin.sertifikat.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
                 <i class="fas fa-certificate mr-3"></i>
@@ -201,6 +206,11 @@
             <a href="{{ route('admin.projects.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">
                 <i class="fas fa-project-diagram mr-3"></i>
                 Projects
+            </a>
+            <!-- Achievements & Speaker -->
+            <a href="{{ route('admin.achievements.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition {{ request()->routeIs('admin.achievements.*') ? 'text-primary font-bold' : '' }}">
+                <i class="fas fa-trophy mr-3"></i>
+                Achievements & Speaker
             </a>
             <!-- TAMBAHKAN sertifikat DI MOBILE SIDEBAR JUGA -->
             <a href="{{ route('admin.sertifikat.index') }}" class="flex items-center px-4 py-3 neumorph-btn dark:neumorph-btn-dark rounded-xl hover:text-primary transition">

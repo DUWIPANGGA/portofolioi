@@ -31,22 +31,22 @@
 
     <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <!-- Users Card -->
-        <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden bg-primary text-white">
+        <!-- Achievements & Speaker Card -->
+        <div class="neumorph-3d dark:neumorph-3d-dark rounded-xl overflow-hidden bg-purple-500 text-white">
             <div class="p-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <p class="text-sm text-black opacity-90">Total Users</p>
-                        <h3 class="text-2xl text-black font-bold">{{ $stats['users'] ?? 0 }}</h3>
+                        <p class="text-sm text-white/90 font-medium">Achievements & Speaker</p>
+                        <h3 class="text-2xl font-bold text-white">{{ $stats['achievements'] ?? 0 }}</h3>
                     </div>
-                    <div class="w-12 h-12 rounded-full text-black bg-white bg-opacity-20 flex items-center justify-center">
-                        <i class="fas fa-users text-xl"></i>
+                    <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white">
+                        <i class="fas fa-trophy text-xl"></i>
                     </div>
                 </div>
             </div>
-            <div class="px-6 py-3 bg-primary-dark bg-opacity-50 flex items-center justify-between text-black">
-                <a href="{{ route('admin.users.index') }}" class="text-sm text-black hover:underline opacity-90 ">View Details</a>
-                <i class="fas fa-arrow-right text-sm opacity-90"></i>
+            <div class="px-6 py-3 bg-purple-700/60 flex items-center justify-between text-white">
+                <a href="{{ route('admin.achievements.index') }}" class="text-sm hover:underline font-semibold">Kelola Achievements</a>
+                <i class="fas fa-arrow-right text-sm"></i>
             </div>
         </div>
 
@@ -143,6 +143,10 @@
                 Portfolio Management
             </h3>
             <div class="space-y-2">
+                <a href="{{ route('admin.achievements.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition text-purple-600 font-semibold">
+                    <span><i class="fas fa-trophy mr-2 text-yellow-500"></i> Achievements & Speaker</span>
+                    <i class="fas fa-arrow-right text-sm text-gray-400"></i>
+                </a>
                 <a href="{{ route('admin.projects.index') }}" class="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-dark-200 transition">
                     <span>Projects</span>
                     <i class="fas fa-arrow-right text-sm text-gray-400"></i>

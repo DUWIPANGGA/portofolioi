@@ -41,6 +41,9 @@ class PortfolioController extends Controller
             'certificates' => function($query) {
                 $query->orderBy('order')->active();
             },
+            'achievements' => function($query) {
+                $query->orderBy('order')->orderBy('event_date', 'desc')->active();
+            },
             'themeSettings']);
 
         return view('main', compact('user'));

@@ -6,12 +6,13 @@ use Carbon\Carbon;
 use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class EducationController extends Controller
 {
     public function index()
     {
-        $educations = Education::orderBy('start_date', 'desc')->paginate(10);
+        $educations = Education::orderBy('order')->orderBy('start_date', 'desc')->paginate(10);
         return view('admin.educations.index', compact('educations'));
     }
 
@@ -21,29 +22,40 @@ class EducationController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validated = $request->validate([
-        'degree'        => 'required|string|max:255',
-        'institution'   => 'required|string|max:255',
-        'field_of_study'=> 'nullable|string|max:255',
-        'gpa'           => 'nullable|numeric|min:0|max:100',
-        'gpa_max'       => 'nullable|numeric|min:0|max:100',
-        'start_date'    => 'required|date',
-        'end_date'      => 'required|date|after_or_equal:start_date',
-        'order'         => 'nullable|integer'
-    ]);
+    {
+        $validated = $request->validate([
+            'degree'        => 'required|string|max:255',
+            'institution'   => 'required|string|max:255',
+            'logo'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096',
+            'logo_url'      => 'nullable|url|max:500',
+            'field_of_study'=> 'nullable|string|max:255',
+            'gpa'           => 'nullable|numeric|min:0|max:100',
+            'gpa_max'       => 'nullable|numeric|min:0|max:100',
+            'start_date'    => 'required|date',
+            'end_date'      => 'required|date|after_or_equal:start_date',
+            'order'         => 'nullable|integer'
+        ]);
 
-    // pastiin format date ke YYYY-MM-DD
-    $validated['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
-    $validated['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
+        $data = $validated;
+        unset($data['logo_url']);
 
-    $validated['user_id'] = Auth::id();
+        // Format tanggal
+        $data['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
+        $data['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
+        $data['user_id']    = Auth::id();
 
-    Education::create($validated);
+        // Upload logo file atau pakai URL
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('educations/logos', 'public');
+        } elseif ($request->filled('logo_url')) {
+            $data['logo'] = $request->input('logo_url');
+        }
 
-    return redirect()->route('admin.educations.index')
-        ->with('success', 'Education created successfully.');
-}
+        Education::create($data);
+
+        return redirect()->route('admin.educations.index')
+            ->with('success', 'Education created successfully.');
+    }
 
     public function show(Education $education)
     {
@@ -56,31 +68,56 @@ class EducationController extends Controller
     }
 
     public function update(Request $request, Education $education)
-{
-    $validated = $request->validate([
-        'degree'        => 'required|string|max:255',
-        'institution'   => 'required|string|max:255',
-        'field_of_study'=> 'nullable|string|max:255',
-        'gpa'           => 'nullable|numeric|min:0|max:100',
-        'gpa_max'       => 'nullable|numeric|min:0|max:100',
-        'start_date'    => 'required|date',
-        'end_date'      => 'required|date|after_or_equal:start_date',
-        'order'         => 'nullable|integer'
-    ]);
-    
-    // pastikan format konsisten YYYY-MM-DD
-    $validated['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
-    $validated['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
-    
-    $education->update($validated);
-    // dd($validated);
+    {
+        $validated = $request->validate([
+            'degree'        => 'required|string|max:255',
+            'institution'   => 'required|string|max:255',
+            'logo'          => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:4096',
+            'logo_url'      => 'nullable|url|max:500',
+            'remove_logo'   => 'nullable|boolean',
+            'field_of_study'=> 'nullable|string|max:255',
+            'gpa'           => 'nullable|numeric|min:0|max:100',
+            'gpa_max'       => 'nullable|numeric|min:0|max:100',
+            'start_date'    => 'required|date',
+            'end_date'      => 'required|date|after_or_equal:start_date',
+            'order'         => 'nullable|integer'
+        ]);
+        
+        $data = $validated;
+        unset($data['logo_url'], $data['remove_logo']);
 
-    return redirect()->route('admin.educations.index')
-        ->with('success', 'Education updated successfully.');
-}
+        $data['start_date'] = Carbon::parse($validated['start_date'])->toDateString();
+        $data['end_date']   = Carbon::parse($validated['end_date'])->toDateString();
+
+        if ($request->boolean('remove_logo')) {
+            if ($education->logo && !str_starts_with($education->logo, 'http')) {
+                Storage::disk('public')->delete($education->logo);
+            }
+            $data['logo'] = null;
+        } elseif ($request->hasFile('logo')) {
+            if ($education->logo && !str_starts_with($education->logo, 'http')) {
+                Storage::disk('public')->delete($education->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('educations/logos', 'public');
+        } elseif ($request->filled('logo_url')) {
+            if ($education->logo && !str_starts_with($education->logo, 'http')) {
+                Storage::disk('public')->delete($education->logo);
+            }
+            $data['logo'] = $request->input('logo_url');
+        }
+        
+        $education->update($data);
+
+        return redirect()->route('admin.educations.index')
+            ->with('success', 'Education updated successfully.');
+    }
 
     public function destroy(Education $education)
     {
+        if ($education->logo && !str_starts_with($education->logo, 'http')) {
+            Storage::disk('public')->delete($education->logo);
+        }
+
         $education->delete();
 
         return redirect()->route('admin.educations.index')

@@ -82,4 +82,9 @@ public function profile()
 {
     return $this->hasMany(Certificate::class)->orderBy('order');
 }
+
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class)->orderBy('order')->orderBy('event_date', 'desc');
+    }
 }

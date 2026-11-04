@@ -1,0 +1,676 @@
+/* ══════════════════════════════════════════════════════════════
+   NEO-BRUTALISM × GOOGLE DEV — design system
+   Thick black borders, hard offset shadows, flat Google colors.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+    --g-blue:   #728AFF;
+    --g-red:    #FF4F51;
+    --g-yellow: #FFDD00;
+    --g-green:  #6BBD42;
+    --ink:      #000000;
+    --paper:    #FFFFFF;
+    --cloud:    #f8f6f6;
+    --nb-border:  3px solid var(--ink);
+    --nb-border2: 2px solid var(--ink);
+    --nb-shadow:  6px 6px 0 var(--ink);
+    --nb-shadow-sm: 4px 4px 0 var(--ink);
+}
+
+* { box-sizing: border-box; }
+
+/* ── Black dot pattern for outer page background ── */
+.bg-dot-pattern {
+    background-image: radial-gradient(#000000 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-color: #eeeeee;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+}
+
+/* ── Marker highlight (Google-style name) ── */
+.nb-marker {
+    background: linear-gradient(transparent 55%, #FDE293 55%);
+    padding: 0 0.1em;
+}
+
+/* ── Anchor offset for sticky navbar ── */
+section[id] { scroll-margin-top: 96px; }
+
+/* ── Page frame (cream margin + bordered white page) ── */
+.page-frame {
+    border: var(--nb-border);
+    border-radius: 28px;
+    box-shadow: 10px 10px 0 var(--ink);
+    overflow: clip; /* `clip` keeps position:sticky working */
+}
+
+/* ── Hero grid backdrop (Google Dev style) ── */
+.nb-grid-bg {
+    background-image:
+        linear-gradient(to bottom, rgba(255, 255, 255, 0) 55%, #ffffff 100%),
+        linear-gradient(to right, rgba(60, 64, 67, 0.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(60, 64, 67, 0.09) 1px, transparent 1px);
+    background-size: 100% 100%, 36px 36px, 36px 36px;
+    background-position: center;
+}
+
+.nb-grid-bg-full {
+    background-color: #ffffff;
+    background-image:
+        linear-gradient(to right, rgba(60, 64, 67, 0.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(60, 64, 67, 0.10) 1px, transparent 1px);
+    background-size: 36px 36px;
+    background-position: center;
+}
+
+/* Grid lines tanpa warna latar — overlay di atas bg berwarna (mis. About) */
+.nb-grid-lines {
+    background-image:
+        linear-gradient(to right, rgba(60, 64, 67, 0.10) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(60, 64, 67, 0.10) 1px, transparent 1px);
+    background-size: 36px 36px;
+    background-position: center;
+}
+
+/* ── Gradient text — kept for compatibility, now solid Google blue ── */
+.text-gradient {
+    color: var(--g-blue);
+    font-weight: inherit;
+}
+
+/* ── Scroll reveal ── */
+.section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ════════════════════════════════════════
+   CARDS
+   ════════════════════════════════════════ */
+.neumorph,
+.neumorph-3d {
+    background: var(--paper);
+    border: var(--nb-border);
+    border-radius: 18px;
+    box-shadow: var(--nb-shadow);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.neumorph-hover:hover,
+.neumorph-3d:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--ink);
+}
+
+/* Variant helpers */
+.nb-card-blue   { background: #E8F0FE; }
+.nb-card-yellow { background: #FEF7E0; }
+.nb-card-green  { background: #E6F4EA; }
+.nb-card-red    { background: #FCE8E6; }
+
+/* ════════════════════════════════════════
+   BUTTONS & SMALL CHIPS
+   ════════════════════════════════════════ */
+.neumorph-btn {
+    background: var(--paper);
+    border: var(--nb-border2);
+    border-radius: 12px;
+    box-shadow: var(--nb-shadow-sm);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.neumorph-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+.neumorph-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 var(--ink);
+}
+
+/* Big CTA buttons */
+.nb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.75rem;
+    background: var(--paper);
+    border: var(--nb-border);
+    border-radius: 14px;
+    box-shadow: var(--nb-shadow);
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.nb-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+.nb-btn:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 var(--ink);
+}
+.nb-btn-yellow { background: var(--g-yellow); }
+.nb-btn-blue   { background: var(--g-blue); color: #fff; }
+.nb-btn-green  { background: var(--g-green); color: #fff; }
+.nb-btn-red    { background: var(--g-red); color: #fff; }
+
+/* Icon boxes — flat colored squares */
+.nb-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: var(--nb-border2);
+    border-radius: 12px;
+    box-shadow: 3px 3px 0 var(--ink);
+    flex-shrink: 0;
+}
+.nb-ib-blue   { background: #D6DDE7; color: var(--g-blue); }
+.nb-ib-yellow { background: #FDE8D0; color: #B06000; }
+.nb-ib-green  { background: #DFE6D8; color: var(--g-green); }
+.nb-ib-red    { background: #F4E0D9; color: var(--g-red); }
+
+/* Sticker badges */
+.nb-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.85rem;
+    background: var(--paper);
+    border: var(--nb-border2);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink);
+    font-weight: 700;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+.nb-badge-yellow { background: var(--g-yellow); }
+.nb-badge-blue   { background: var(--g-blue); color: #fff; }
+.nb-badge-green  { background: var(--g-green); color: #fff; }
+.nb-badge-red    { background: var(--g-red); color: #fff; }
+.nb-sticker { transform: rotate(-4deg); }
+.nb-sticker-r { transform: rotate(3deg); }
+
+/* "Filled" inset block (info boxes) */
+.neumorph-inset {
+    background: var(--cloud);
+    border: var(--nb-border2);
+    border-radius: 12px;
+    box-shadow: none;
+}
+
+/* "Pressed" block */
+.nb-press {
+    background: var(--cloud);
+    border: var(--nb-border2);
+    border-radius: 12px;
+}
+
+/* ── Inputs ── */
+.input-field {
+    background: var(--paper);
+    border: var(--nb-border);
+    border-radius: 12px;
+    box-shadow: var(--nb-shadow-sm);
+    transition: box-shadow 0.12s ease, transform 0.12s ease;
+    color: var(--ink);
+}
+.input-field:focus {
+    outline: none;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--g-yellow), 6px 6px 0 1px var(--ink);
+}
+.input-field::placeholder { color: #9AA0A6; }
+
+/* ── Nav links ── */
+.nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+.nav-link::after { content: none; }
+.nav-link:hover {
+    background: var(--g-yellow);
+    border: var(--nb-border2);
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: translate(-1px, -1px);
+}
+
+/* ════════════════════════════════════════
+   MARQUEE — scrolling text ribbon (Google I/O band)
+   ════════════════════════════════════════ */
+.scrolling-text-container {
+    width: 110%;
+    margin-left: -5%;
+    margin-top: 2rem;
+    margin-bottom: -1.5rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    padding: 1.5rem 0;
+    background: var(--g-yellow);
+    border-top: var(--nb-border);
+    border-bottom: var(--nb-border);
+    transform: rotate(-2deg);
+}
+/* reveal (.section / .section-visible) jangan menimpa kemiringan */
+.scrolling-text-container.section { transform: rotate(-2deg) translateY(40px); }
+.scrolling-text-container.section-visible { transform: rotate(-2deg); }
+.scrolling-text-track {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+    animation: scroll 30s linear infinite;
+}
+.scrolling-text {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.6rem;
+    margin: 0 0.75rem;
+    padding: 0.55rem 0.95rem;
+    background: var(--paper);
+    border: var(--nb-border2);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+}
+.scrolling-text i { color: var(--g-blue); font-size: 1.45rem; }
+@keyframes scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.scrolling-text-container:hover .scrolling-text-track {
+    animation-play-state: paused;
+}
+
+/* ════════════════════════════════════════
+   HERO BACKGROUND SKILL PILLS
+   ════════════════════════════════════════ */
+.skill-scroll-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+    pointer-events: none;
+}
+.skill-scroll-track {
+    display: flex;
+    white-space: nowrap;
+    gap: 1.25rem;
+    width: max-content;
+    animation: skillScroll 60s linear infinite;
+    pointer-events: none;
+}
+.skill-scroll-track-right {
+    display: flex;
+    white-space: nowrap;
+    gap: 1.25rem;
+    width: max-content;
+    animation: skillScrollRight 60s linear infinite;
+    pointer-events: none;
+}
+.skill-scroll-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.3rem;
+    background: var(--paper);
+    border: var(--nb-border2);
+    border-radius: 999px;
+    box-shadow: 4px 4px 0 var(--ink);
+    white-space: nowrap;
+    font-weight: 700;
+    font-size: 0.95rem;
+    user-select: none;
+}
+.skill-scroll-item:nth-child(3n)   { background: #E8F0FE; }
+.skill-scroll-item:nth-child(3n+1) { background: #FEF7E0; }
+.skill-scroll-item:nth-child(3n+2) { background: #E6F4EA; }
+.skill-scroll-icon { font-size: 1.1rem; color: var(--g-blue); pointer-events: none; }
+.skill-scroll-name { pointer-events: none; }
+.skill-no-interaction {
+    pointer-events: none !important;
+    user-select: none !important;
+}
+.skill-tilt-2 { transform: rotate(-2deg); }
+
+@-webkit-keyframes skillScroll {
+    0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+    100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+}
+@keyframes skillScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+@-webkit-keyframes skillScrollRight {
+    0%   { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    100% { -webkit-transform: translateX(0); transform: translateX(0); }
+}
+@keyframes skillScrollRight {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* ════════════════════════════════════════
+   TIMELINE — thick ink line, colored dots
+   ════════════════════════════════════════ */
+.timeline-dash-line {
+    height: 200%;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        var(--ink) 0px,
+        var(--ink) 14px,
+        rgba(0, 0, 0, 0) 14px,
+        rgba(0, 0, 0, 0) 26px
+    );
+    animation: dashScrollUp 2.4s linear infinite;
+    will-change: transform;
+}
+.edu-dash-line {
+    height: 200%;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        var(--g-green) 0px,
+        var(--g-green) 14px,
+        rgba(52, 168, 83, 0) 14px,
+        rgba(52, 168, 83, 0) 26px
+    );
+    animation: dashScrollUp 3s linear infinite;
+    will-change: transform;
+}
+@-webkit-keyframes dashScrollUp {
+    0%   { -webkit-transform: translateY(0); transform: translateY(0); }
+    100% { -webkit-transform: translateY(-50%); transform: translateY(-50%); }
+}
+@keyframes dashScrollUp {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
+.tl-slide-left,
+.tl-slide-right {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: opacity, transform;
+}
+.tl-slide-left  { transform: translateX(-40px); }
+.tl-slide-right { transform: translateX(40px); }
+
+.edu-slide-left,
+.edu-slide-right {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    will-change: opacity, transform;
+}
+.edu-slide-left  { transform: translateX(-40px); }
+.edu-slide-right { transform: translateX(40px); }
+
+@media (max-width: 767px) {
+    .tl-slide-left, .tl-slide-right,
+    .edu-slide-left, .edu-slide-right {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+.timeline-item.show .tl-slide-left,
+.timeline-item.show .tl-slide-right,
+.edu-timeline-item.show .edu-slide-left,
+.edu-timeline-item.show .edu-slide-right {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ════════════════════════════════════════
+   MODALS
+   ════════════════════════════════════════ */
+#projectModal > div,
+#certificateModal > div,
+#achievementModal > div {
+    border: var(--nb-border);
+    border-radius: 20px;
+    box-shadow: 10px 10px 0 var(--ink) !important;
+    background: var(--paper);
+}
+
+/* ════════════════════════════════════════
+   UIVERSE FLIP-CARD (Adapted for Responsive Grid & Neobrutalism)
+   From Uiverse.io by joe-watson-sbf
+   ════════════════════════════════════════ */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 310px;
+  perspective: 1000px;
+  font-family: inherit;
+}
+
+.flip-card .title {
+  font-size: 1.35em;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  box-shadow: 6px 6px 0 var(--ink, #000);
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 2.5px solid var(--ink, #000);
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.25rem;
+}
+
+.flip-card-front {
+  background: linear-gradient(120deg, bisque 60%, rgb(255, 231, 222) 88%,
+     rgb(255, 211, 195) 40%, rgba(255, 127, 80, 0.603) 48%);
+  color: #C85A32;
+}
+
+.flip-card-back {
+  background: linear-gradient(120deg, rgb(255, 174, 145) 30%, coral 88%,
+     bisque 40%, rgb(255, 185, 160) 78%);
+  color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+/* Palette variations for flip cards */
+.flip-card-blue .flip-card-front {
+  background: linear-gradient(120deg, #D6DDE7 60%, #BDCBD8 88%, #A4B9CC 40%, rgba(110, 139, 174, 0.5) 48%);
+  color: #3E5E7A;
+}
+.flip-card-blue .flip-card-back {
+  background: linear-gradient(120deg, #9DB8D8 30%, #6E8BAE 88%, #D6DDE7 40%, #B3C6D6 78%);
+  color: #ffffff;
+}
+
+.flip-card-green .flip-card-front {
+  background: linear-gradient(120deg, #DFE6D8 60%, #CDDFC6 88%, #A8C4AD 40%, rgba(113, 139, 94, 0.5) 48%);
+  color: #4A6A3A;
+}
+.flip-card-green .flip-card-back {
+  background: linear-gradient(120deg, #9CBFA3 30%, #718B5E 88%, #DFE6D8 40%, #B3C6BB 78%);
+  color: #ffffff;
+}
+
+.flip-card-yellow .flip-card-front {
+  background: linear-gradient(120deg, #FDE8D0 60%, #FBE0BC 88%, #FDD663 40%, rgba(255, 162, 43, 0.5) 48%);
+  color: #8F5F00;
+}
+.flip-card-yellow .flip-card-back {
+  background: linear-gradient(120deg, #FDD663 30%, #FFA22B 88%, #FDE8D0 40%, #FDE4C0 78%);
+  color: #202124;
+}
+
+/* ════════════════════════════════════════
+   INTERACTIVE SKILL CARDS & BADGES
+   ════════════════════════════════════════ */
+.skill-card-neo {
+  background: #ffffff;
+  border: 2.5px solid var(--ink, #000);
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0 var(--ink, #000);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.skill-card-neo:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--ink, #000);
+}
+
+.category-tab-btn.active {
+  background-color: var(--ink, #000);
+  color: #ffffff;
+  box-shadow: 4px 4px 0 var(--g-yellow, #FFA22B);
+}
+
+/* ════════════════════════════════════════
+   TECH LOGO IMAGES — floating pills & marquee
+   ════════════════════════════════════════ */
+.skill-scroll-img {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+  pointer-events: none;
+}
+.scrolling-text-img {
+  flex-shrink: 0;
+  width: 1.55rem;
+  height: 1.55rem;
+  object-fit: contain;
+}
+
+/* ════════════════════════════════════════
+   FIGMA-SELECT + TYPING HEADING ANIMATION
+   Cursor → klik → selection box biru → ketik
+   ════════════════════════════════════════ */
+.ts-heading {
+  position: relative;
+}
+.ts-heading.ts-lock {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Figma-style arrow cursor (posisi & transisi di-drive JS per fase) */
+.fig-cursor {
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 22px;
+  height: 22px;
+  z-index: 30;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(56px, 40px);
+  will-change: transform, opacity;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.28));
+}
+.fig-cursor svg { display: block; }
+.fig-cursor.is-live { opacity: 1; transition: opacity 0.25s ease; }
+
+/* Figma selection box — gambar dari ujung atas ke ujung bawah (clip-path) */
+.fig-select {
+  position: absolute;
+  inset: -7px;
+  border: 2px solid #0D99FF;
+  background: rgba(13, 153, 255, 0.08);
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.6s cubic-bezier(0.35, 0.7, 0.4, 1),
+              opacity 0.12s ease;
+}
+.fig-select.is-on { opacity: 1; }
+.fig-select.is-drawn { clip-path: inset(0 0 0 0); }
+.fig-select.is-out { opacity: 0; transition: opacity 0.3s ease; }
+.fig-select .fig-handle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border: 1.5px solid #0c7fb9;
+  border-radius: 1px;
+}
+.fig-select .fig-handle.tl { left: -5px; top: -5px; }
+.fig-select .fig-handle.tr { right: -5px; top: -5px; }
+.fig-select .fig-handle.bl { left: -5px; bottom: -5px; }
+.fig-select .fig-handle.br { right: -5px; bottom: -5px; }
+
+/* Typing caret */
+.type-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.92em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: #0D99FF;
+  animation: typeCaretBlink 0.75s steps(1) infinite;
+}
+@keyframes typeCaretBlink {
+  0%, 55%  { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+/* Floating tech stickers — melayang di margin luar page frame */
+@keyframes stickFloat {
+  0%, 100% { transform: rotate(var(--r, 0deg)) translateY(0); }
+  50%      { transform: rotate(var(--r, 0deg)) translateY(-14px); }
+}
+.float-sticker {
+  animation: stickFloat 6s ease-in-out infinite;
+}
+
+/* Hero photo — hover: lurus, angkat, shadow membesar (foto di dalam ikut zoom via group-hover) */
+.hero-photo {
+  filter: drop-shadow(10px 10px 0 var(--ink));
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+.hero-photo:hover {
+  transform: rotate(0deg) translateY(-12px);
+  filter: drop-shadow(16px 16px 0 var(--ink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fig-cursor, .fig-select, .type-caret { display: none !important; }
+  .float-sticker { animation: none; }
+}

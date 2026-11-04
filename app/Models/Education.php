@@ -14,6 +14,7 @@ class Education extends Model
         'user_id',
         'degree',
         'institution',
+        'logo',
         'field_of_study',
         'gpa',
         'gpa_max',
@@ -29,5 +30,21 @@ class Education extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * URL logo institusi / kampus / sekolah
+     */
+    public function getLogoUrlAttribute(): ?string
+    {
+        if (!$this->logo) {
+            return null;
+        }
+
+        if (str_starts_with($this->logo, 'http://') || str_starts_with($this->logo, 'https://')) {
+            return $this->logo;
+        }
+
+        return asset('storage/' . $this->logo);
     }
 }

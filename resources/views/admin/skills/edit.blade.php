@@ -50,6 +50,22 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <!-- Skill Level (Enum) -->
+                <div class="col-span-1">
+                    <label for="level" class="block mb-2 font-medium">Skill Level (Enum)</label>
+                    <select name="level" id="level" class="input-field dark:input-field w-full" required>
+                        @foreach($skillLevels as $levelEnum)
+                            <option value="{{ $levelEnum->value }}" {{ old('level', $skill->level?->value ?? $skill->skill_level->value) === $levelEnum->value ? 'selected' : '' }}>
+                                {{ $levelEnum->label() }} ({{ $levelEnum->value }})
+                            </option>
+                        @endforeach
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Pilih tingkat kemahiran: Beginner, Intermediate, Advanced, Expert, Master</p>
+                    @error('level')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
                 
                 <!-- Category -->
                 <div class="col-span-1">
@@ -69,6 +85,22 @@
                     @error('icon')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
+                </div>
+                
+                <!-- Logo Image URL -->
+                <div class="col-span-1">
+                    <label for="image" class="block mb-2 font-medium">Logo Image URL</label>
+                    <input type="text" name="image" id="image" value="{{ old('image', $skill->image) }}"
+                           placeholder="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                           class="input-field dark:input-field w-full"
+                           oninput="document.getElementById('imagePreview').src = this.value;">
+                    <p class="text-xs text-gray-500 mt-1">Link logo/ikon teknologi (SVG/PNG). Kosongkan untuk pakai icon Font Awesome.</p>
+                    @error('image')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                    <div class="mt-2 w-10 h-10 border rounded-lg items-center justify-center bg-white" id="imagePreviewBox" style="{{ old('image', $skill->image) ? 'display:flex' : 'display:none' }}">
+                        <img id="imagePreview" src="{{ old('image', $skill->image) }}" alt="preview" class="w-6 h-6 object-contain" onload="this.parentElement.style.display='flex'" onerror="this.parentElement.style.display='none'">
+                    </div>
                 </div>
                 
                 <!-- Order -->

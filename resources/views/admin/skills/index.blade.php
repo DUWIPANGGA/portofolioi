@@ -73,6 +73,9 @@
                                 </div>
                             </th>
                             <th class="px-6 py-4 font-medium">
+                                Level
+                            </th>
+                            <th class="px-6 py-4 font-medium">
                                 <div class="flex items-center">
                                     Category
                                     @include('partials.sort-icon', ['field' => 'category'])
@@ -117,8 +120,15 @@
                                                 <div class="h-full bg-primary" style="width: {{ $skill->percentage }}%"></div>
                                             </div>
                                         </div>
-                                        <span class="text-sm">{{ $skill->percentage }}%</span>
+                                        <span class="text-sm font-semibold">{{ $skill->percentage }}%</span>
                                     </div>
+                                </td>
+
+                                <!-- Level (Enum) -->
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2.5 py-1 rounded-md text-xs font-bold border {{ $skill->level_badge_class }}">
+                                        {{ $skill->level_label }}
+                                    </span>
                                 </td>
                                 
                                 <!-- Category -->

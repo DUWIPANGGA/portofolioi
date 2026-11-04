@@ -9,6 +9,7 @@ use App\Models\ContactMessage;
 use App\Models\Post;
 use App\Models\Subscriber;
 use App\Models\Certificate;
+use App\Models\Achievement;
 
 class DashboardController extends Controller
 {
@@ -22,6 +23,7 @@ class DashboardController extends Controller
             'posts' => Post::published()->count(),
             'subscribers' => Subscriber::active()->count(),
             'certificates' => Certificate::count(),
+            'achievements' => Achievement::count(),
         ];
 
         $recentProjects = Project::with('technologies')
@@ -42,12 +44,17 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
+        $recentAchievements = Achievement::latest()
+            ->take(5)
+            ->get();
+
         return view('admin.dashboard', compact(
             'stats', 
             'recentProjects', 
             'recentMessages', 
             'recentPosts',
-            'recentCertificates'
+            'recentCertificates',
+            'recentAchievements'
         ));
     }
 }

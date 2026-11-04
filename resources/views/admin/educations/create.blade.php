@@ -8,14 +8,15 @@
     <div class="neumorph-3d dark:neumorph-3d-dark p-6 max-w-3xl mx-auto">
         <h3 class="text-xl font-semibold mb-6">Add Education</h3>
 
-        <form action="{{ route('admin.educations.store') }}" method="POST">
+        <form action="{{ route('admin.educations.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Degree -->
                 <div class="md:col-span-2">
-                    <label for="degree" class="block mb-2">Degree*</label>
+                    <label for="degree" class="block mb-2 font-medium">Degree*</label>
                     <input type="text" id="degree" name="degree" value="{{ old('degree') }}" 
+                           placeholder="e.g. Sarjana Teknik Komputer (S.T.)"
                            class="w-full input-field dark:input-field" required>
                     @error('degree')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -24,12 +25,59 @@
 
                 <!-- Institution -->
                 <div class="md:col-span-2">
-                    <label for="institution" class="block mb-2">Institution*</label>
+                    <label for="institution" class="block mb-2 font-medium">Institution / Nama Sekolah / Kampus*</label>
                     <input type="text" id="institution" name="institution" value="{{ old('institution') }}" 
+                           placeholder="e.g. Universitas Indonesia, Politeknik Elektronika Negeri Surabaya"
                            class="w-full input-field dark:input-field" required>
                     @error('institution')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
+                </div>
+
+                <!-- Logo Kampus / Sekolah -->
+                <div class="md:col-span-2">
+                    <label class="block mb-2 font-medium">
+                        <i class="fas fa-university text-primary mr-1"></i> Logo Kampus / Sekolah <span class="text-gray-400 text-xs font-normal">(opsional)</span>
+                    </label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30">
+                        <!-- Upload File -->
+                        <div>
+                            <span class="text-xs font-semibold text-gray-500 block mb-1.5">Opsi 1: Upload File Gambar</span>
+                            <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-3 text-center hover:border-primary transition bg-white dark:bg-gray-800">
+                                <input type="file" id="logo" name="logo" accept="image/*" class="hidden" onchange="previewLogoFile(event)">
+                                <label for="logo" class="cursor-pointer block">
+                                    <div id="logoPreviewBox" class="hidden mb-2">
+                                        <img id="logoPreview" src="" alt="Preview Logo" class="w-16 h-16 object-contain mx-auto rounded-lg border p-1 bg-white">
+                                    </div>
+                                    <div id="logoPlaceholder">
+                                        <i class="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-1"></i>
+                                        <p class="text-xs font-medium text-gray-600 dark:text-gray-300">Pilih logo dari komputer</p>
+                                        <p class="text-[10px] text-gray-400 mt-0.5">PNG, SVG, JPG, WEBP maks 4MB</p>
+                                    </div>
+                                </label>
+                            </div>
+                            @error('logo')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <!-- Atau Input URL Logo -->
+                        <div>
+                            <span class="text-xs font-semibold text-gray-500 block mb-1.5">Opsi 2: Atau Paste URL Gambar Logo</span>
+                            <input type="url" name="logo_url" id="logo_url" value="{{ old('logo_url') }}"
+                                   placeholder="https://example.com/logo-kampus.png"
+                                   class="w-full input-field dark:input-field text-sm"
+                                   oninput="previewLogoUrl(this.value)">
+                            <p class="text-[11px] text-gray-400 mt-1">Bisa pakai link logo resmi kampus (PNG transparan / SVG disarankan)</p>
+                            @error('logo_url')
+                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            <div id="logoUrlPreviewBox" class="mt-2 hidden">
+                                <span class="text-[10px] text-gray-400 block mb-1">Preview URL:</span>
+                                <img id="logoUrlPreview" src="" alt="URL Preview" class="w-12 h-12 object-contain rounded-lg border p-1 bg-white">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Field of Study -->
@@ -112,6 +160,30 @@
 
 @push('scripts')
 <script>
+    function previewLogoFile(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('logoPreview').src = e.target.result;
+                document.getElementById('logoPreviewBox').classList.remove('hidden');
+                document.getElementById('logoPlaceholder').classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    function previewLogoUrl(url) {
+        const box = document.getElementById('logoUrlPreviewBox');
+        const img = document.getElementById('logoUrlPreview');
+        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+            img.src = url;
+            box.classList.remove('hidden');
+        } else {
+            box.classList.add('hidden');
+        }
+    }
+
     // Set default end date = 4 tahun setelah start date
     document.getElementById('start_date').addEventListener('change', function() {
         const startDate = new Date(this.value);
