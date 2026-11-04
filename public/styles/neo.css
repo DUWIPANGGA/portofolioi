@@ -605,7 +605,7 @@ section[id] { scroll-margin-top: 96px; }
 }
 .fig-cursor svg { display: block; }
 .fig-cursor.is-live { opacity: 1; transition: opacity 0.25s ease; }
-
+/*cek
 /* Figma selection box — gambar dari ujung atas ke ujung bawah (clip-path) */
 .fig-select {
   position: absolute;
